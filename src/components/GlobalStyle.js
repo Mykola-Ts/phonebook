@@ -52,6 +52,7 @@ export const GlobalStyle = createGlobalStyle`
   --background-color: rgb(228, 228, 228);
   --text-black-color: #111;
   --white-color: #fff;
+  --gray-color: rgb(228 228 228);
   --red-color: #ff0000;
   --blue-color: #5050fb;
   --error-color: rgba(255, 85, 73, 0.9);

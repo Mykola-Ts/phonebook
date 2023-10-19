@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { toast } from 'react-hot-toast';
-import { IoMdPersonAdd } from 'react-icons/io';
+import { BiSave } from 'react-icons/bi';
 import { useContacts } from 'hooks/useContacts';
-import { addContact } from 'redux/contacts/operations';
 import { contactSchema, isIncludesContact } from 'helpers/helpers';
+import { editContact } from 'redux/contacts/operations';
 import {
   Error,
   Label,
@@ -15,32 +16,44 @@ import {
   WrapperInput,
 } from './Form.styled';
 
-export const AddContactForm = () => {
-  const contacts = useContacts();
+export const EditContactForm = ({ contact, closeModal }) => {
   const dispatch = useDispatch();
+  const contacts = useContacts();
+  const { id, name, number } = contact;
 
-  const onSubmit = ({ name, number }, { resetForm }) => {
-    if (isIncludesContact(contacts, name, number)) {
+  const onSubmit = values => {
+    const allContactsExceptEdited = contacts.filter(
+      contact => contact.name !== name && contact.number !== number
+    );
+
+    if (
+      isIncludesContact(allContactsExceptEdited, values.name, values.number)
+    ) {
       return;
     }
 
-    dispatch(addContact({ name, number }))
+    dispatch(
+      editContact({
+        id,
+        editedContact: values,
+      })
+    )
       .unwrap()
       .then(resp => {
         toast.remove();
-        toast.success(`${name} added to contacts`);
+        toast.success(`Contact ${name} successfully changed.`);
       })
       .catch(error => {
         toast.remove();
         toast.error('Oops, something went wrong. Try again.');
       });
 
-    resetForm();
+    closeModal();
   };
 
   return (
     <Formik
-      initialValues={{ name: '', number: '' }}
+      initialValues={{ name, number }}
       onSubmit={onSubmit}
       validationSchema={contactSchema}
     >
@@ -68,10 +81,15 @@ export const AddContactForm = () => {
         </Label>
 
         <SubmitButton type="submit">
-          <IoMdPersonAdd size={20} />
-          Add contact
+          <BiSave size={20} />
+          Save changes
         </SubmitButton>
       </Form>
     </Formik>
   );
+};
+
+EditContactForm.propTypes = {
+  contact: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };

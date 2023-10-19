@@ -7,7 +7,7 @@ export const ListItem = styled.li`
   align-items: center;
 
   border-radius: 8px;
-  border: 2px solid rgb(228 228 228);
+  border: 2px solid var(--gray-color);
   padding: 16px 20px;
 
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
@@ -22,6 +22,11 @@ export const ListItem = styled.li`
 
   &:is(:hover) {
     transform: scale(1.02, 1.1);
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 `;
 

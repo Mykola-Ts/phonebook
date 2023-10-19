@@ -11,6 +11,7 @@ export const SharedLayout = () => {
   return (
     <>
       <AppBar />
+      
       <Wrapper>
         <Suspense fallback={<Loader text="Loading data, please wait..." />}>
           <Outlet />

@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
-import { selectVisibleContacts } from 'redux/selectors';
 import { Contact } from 'components/Contact/Contact';
 import { ListItem, NoContactsText } from './ContactsList.styled';
+import { useVisibleContacts } from 'hooks/useContacts';
 
 export const ContactsList = () => {
-  const contacts = useSelector(selectVisibleContacts);
+  const contacts = useVisibleContacts();
 
   return contacts.length ? (
     <ul>
@@ -15,6 +14,8 @@ export const ContactsList = () => {
       ))}
     </ul>
   ) : (
-    <NoContactsText>No contacts found for the entered name</NoContactsText>
+    <NoContactsText>
+      No contacts found for the entered name or number
+    </NoContactsText>
   );
 };

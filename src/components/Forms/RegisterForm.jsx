@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
-import { userSignUp } from 'redux/operations';
+import { userSignUp } from 'redux/auth/operations';
 import {
   EmailInputIcon,
   Error,
@@ -91,6 +91,7 @@ export const RegisterForm = () => {
             </WrapperInput>
             <ErrorMessage name="name" component={Error} />
           </Label>
+
           <Label>
             Email
             <WrapperInput>
@@ -103,6 +104,7 @@ export const RegisterForm = () => {
             </WrapperInput>
             <ErrorMessage name="email" component={Error} />
           </Label>
+
           <Label>
             Password
             <WrapperInput>
@@ -115,6 +117,7 @@ export const RegisterForm = () => {
             </WrapperInput>
             <ErrorMessage name="password" component={Error} />
           </Label>
+
           <SubmitButton type="submit">Sign up</SubmitButton>
         </Form>
       </Formik>

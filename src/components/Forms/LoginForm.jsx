@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
-import { userLogIn } from 'redux/operations';
+import { userLogIn } from 'redux/auth/operations';
 import {
   EmailInputIcon,
   Error,

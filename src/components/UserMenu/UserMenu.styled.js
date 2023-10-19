@@ -34,9 +34,9 @@ export const UserName = styled.p`
 `;
 
 export const LogoutBtn = styled.button`
-position: absolute;
-bottom: -100%;
-left: 0;
+  position: absolute;
+  bottom: -100%;
+  left: 0;
 
   display: flex;
   align-items: center;

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
-import { selectFilterValue } from 'redux/selectors';
-import { filterContacts } from 'redux/filterSlice';
+import { selectFilterValue } from 'redux/filter/selectors';
+import { filterContacts } from 'redux/filter/slice';
 import {
   FilterLabel,
   FilterInput,
@@ -39,6 +39,7 @@ export const Filter = () => {
             onChange={onChange}
           />
           <SearchIcon />
+
           {filter && (
             <ResetBtn type="button" onClick={onReset}>
               <AiOutlineClose />

@@ -2,11 +2,18 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import { FaUserAlt } from 'react-icons/fa';
 import { GoTrash } from 'react-icons/go';
 import { MdOutlineEdit } from 'react-icons/md';
-import { deleteContact } from 'redux/operations';
-import { Button, ContactInfo, ContactNumber } from './Contact.styled';
+import { deleteContact } from 'redux/contacts/operations';
 import { ContactModal } from 'components/ContactModal/ContactModal';
+import {
+  Button,
+  ContactInfo,
+  ContactNumber,
+  ContactName,
+  AvatarWrapp,
+} from './Contact.styled';
 
 export const Contact = ({ contact = {} }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -37,8 +44,13 @@ export const Contact = ({ contact = {} }) => {
 
   return (
     <>
-      <ContactInfo>{`${name}: `}</ContactInfo>
-      <ContactNumber>{number}</ContactNumber>
+      <AvatarWrapp>
+        <FaUserAlt size={32} color="gray" />
+      </AvatarWrapp>
+      <ContactInfo>
+        <ContactName>{`${name}: `}</ContactName>
+        <ContactNumber>{number}</ContactNumber>
+      </ContactInfo>
 
       <Button type="button" onClick={toggleModal}>
         <MdOutlineEdit size={20} />

@@ -1,12 +1,12 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userRefresh } from 'redux/operations';
 import { useAuth } from 'hooks/useAuth';
+import { userRefresh } from 'redux/auth/operations';
 import { RestrictedRoute } from './RestrictedRoute';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Loader } from './Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
+import { Loader } from './Loader/Loader';
 
 const Register = lazy(() => import('../pages/Register'));
 const Login = lazy(() => import('../pages/Login'));

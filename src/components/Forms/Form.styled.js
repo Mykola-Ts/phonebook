@@ -14,6 +14,8 @@ export const Label = styled.label`
 
 export const WrapperInput = styled.div`
   position: relative;
+  
+  color: currentColor;
 
   transition: color var(--transition-duration) var(--transition-timing-function);
 
