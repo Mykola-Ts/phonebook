@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { FaUserAlt } from 'react-icons/fa';
 import { GoTrash } from 'react-icons/go';
 import { MdOutlineEdit } from 'react-icons/md';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
 import { ContactModal } from 'components/ContactModal/ContactModal';
 import {
@@ -13,6 +14,8 @@ import {
   ContactNumber,
   ContactName,
   AvatarWrapp,
+  BtnsWrapp,
+  PhoneLink,
 } from './Contact.styled';
 
 export const Contact = ({ contact = {} }) => {
@@ -41,26 +44,34 @@ export const Contact = ({ contact = {} }) => {
   };
 
   const { id, name, number } = contact;
+  const numberHref = number.split('-').join('').split(' ').join('');
 
   return (
     <>
       <AvatarWrapp>
         <FaUserAlt size={32} color="gray" />
       </AvatarWrapp>
+
       <ContactInfo>
         <ContactName>{`${name}: `}</ContactName>
-        <ContactNumber>{number}</ContactNumber>
+        <ContactNumber href={`tel:${numberHref}`}>{number}</ContactNumber>
       </ContactInfo>
 
-      <Button type="button" onClick={toggleModal}>
-        <MdOutlineEdit size={20} />
-        Edit
-      </Button>
+      <PhoneLink href={`tel:${numberHref}`}>
+        <BsFillTelephoneFill />
+      </PhoneLink>
 
-      <Button type="button" onClick={() => onDelete(id, name)}>
-        <GoTrash size={20} />
-        Delete
-      </Button>
+      <BtnsWrapp>
+        <Button type="button" onClick={toggleModal}>
+          <MdOutlineEdit size={20} />
+          Edit
+        </Button>
+
+        <Button type="button" onClick={() => onDelete(id, name)}>
+          <GoTrash size={20} />
+          Delete
+        </Button>
+      </BtnsWrapp>
 
       <ContactModal
         contact={contact}
