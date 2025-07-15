@@ -1,6 +1,8 @@
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
 
+export const defaultErrorText = 'Oops, something went wrong. Try again.';
+
 export const isIncludesContact = (contacts, name, number) => {
   const isIncludesName = contacts.find(
     contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -8,17 +10,17 @@ export const isIncludesContact = (contacts, name, number) => {
   const isIncludesNumber = contacts.find(contact => contact.number === number);
 
   if (isIncludesName || isIncludesNumber) {
-    const warningText = `${
-      isIncludesName ? name : `Number ${number}`
-    } is already in contacts`;
+    const warningText = `A contact with the ${
+      isIncludesName ? `name ${name}` : `number ${number}`
+    } already exists in your contacts.`;
 
     toast.remove();
     toast.error(warningText);
 
-    return true;
+    return warningText;
   }
 
-  return false;
+  return '';
 };
 
 export const contactSchema = object({

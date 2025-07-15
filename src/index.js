@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         loading={<Loader text="Loading data, please wait..." />}
         persistor={persistor}
       >
-        <BrowserRouter basename="/goit-react-hw-08-phonebook">
+        <BrowserRouter basename="/phonebook">
           <App />
         </BrowserRouter>
       </PersistGate>

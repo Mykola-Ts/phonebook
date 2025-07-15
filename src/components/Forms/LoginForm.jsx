@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
 import { userLogIn } from 'redux/auth/operations';
+import { defaultErrorText } from 'helpers/helpers';
 import {
   EmailInputIcon,
   Error,
@@ -32,9 +34,11 @@ const loginSchema = object({
       'The password is long! Please enter a password with at more 18 characters.'
     ),
 });
+const loginErrorText = 'An incorrect username or password has been submitted.';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const [errorText, setErrorText] = useState('');
 
   const onSubmit = ({ email, password }, { resetForm }) => {
     const credentials = {
@@ -50,10 +54,18 @@ export const LoginForm = () => {
         resetForm();
       })
       .catch(err => {
-        err === 'Request failed with status code 400'
-          ? toast.error('An incorrect username or password has been submitted.')
-          : toast.error('Oops, something went wrong. Try again.');
+        if (err === 'Request failed with status code 400') {
+          toast.error(loginErrorText);
+          setErrorText(loginErrorText);
+        } else {
+          toast.error(defaultErrorText);
+          setErrorText(defaultErrorText);
+        }
       });
+  };
+
+  const onInput = () => {
+    setErrorText('');
   };
 
   return (
@@ -71,11 +83,13 @@ export const LoginForm = () => {
                 name="email"
                 type="email"
                 placeholder="user@mail.com"
+                onInput={onInput}
               />
               <EmailInputIcon size={18} />
             </WrapperInput>
             <ErrorMessage name="email" component={Error} />
           </Label>
+
           <Label>
             Password
             <WrapperInput>
@@ -83,11 +97,19 @@ export const LoginForm = () => {
                 name="password"
                 type="password"
                 placeholder="password123"
+                onInput={onInput}
               />
               <PasswordInputIcon size={18} />
             </WrapperInput>
             <ErrorMessage name="password" component={Error} />
           </Label>
+
+          {errorText && (
+            <Error style={{ marginBottom: '28px', textAlign: 'center' }}>
+              {errorText}
+            </Error>
+          )}
+
           <SubmitButton type="submit">Sign in</SubmitButton>
         </Form>
       </Formik>

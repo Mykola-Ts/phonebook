@@ -7,7 +7,9 @@ import { GoTrash } from 'react-icons/go';
 import { MdOutlineEdit } from 'react-icons/md';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
-import { ContactModal } from 'components/ContactModal/ContactModal';
+import { defaultErrorText } from 'helpers/helpers';
+import { EditContactForm } from 'components/Forms/EditContactForm';
+import { ModalWindow } from 'components/ContactModal/ModalWindow';
 import {
   Button,
   ContactInfo,
@@ -31,7 +33,7 @@ export const Contact = ({ contact = {} }) => {
       })
       .catch(error => {
         toast.remove();
-        toast.error('Oops, something went wrong. Try again.');
+        toast.error(defaultErrorText);
       });
   };
 
@@ -73,11 +75,9 @@ export const Contact = ({ contact = {} }) => {
         </Button>
       </BtnsWrapp>
 
-      <ContactModal
-        contact={contact}
-        closeModal={toggleModal}
-        modalIsOpen={modalIsOpen}
-      />
+      <ModalWindow closeModal={toggleModal} modalIsOpen={modalIsOpen}>
+        <EditContactForm contact={contact} closeModal={toggleModal} />
+      </ModalWindow>
     </>
   );
 };

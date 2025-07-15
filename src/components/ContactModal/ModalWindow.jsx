@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { AiOutlineClose } from 'react-icons/ai';
-import { EditContactForm } from 'components/Forms/EditContactForm';
-import { CloseBtn } from './ContactModal.styled';
+import { CloseBtn } from './ModalWindow.styled';
 
 Modal.setAppElement('#root');
 
@@ -13,13 +12,17 @@ const customModalStyles = {
     right: 'auto',
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     width: 'calc(100% - 30px)',
     maxWidth: '600px',
+    minHeight: '160px',
     marginRight: '-50%',
   },
 };
 
-export const ContactModal = ({ contact, closeModal, modalIsOpen }) => {
+export const ModalWindow = ({ children, closeModal, modalIsOpen }) => {
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -27,7 +30,7 @@ export const ContactModal = ({ contact, closeModal, modalIsOpen }) => {
       style={customModalStyles}
       contentLabel="Contact Modal"
     >
-      <EditContactForm contact={contact} closeModal={closeModal} />
+      {children}
 
       <CloseBtn onClick={closeModal}>
         <AiOutlineClose />
@@ -36,8 +39,8 @@ export const ContactModal = ({ contact, closeModal, modalIsOpen }) => {
   );
 };
 
-ContactModal.propTypes = {
-  contact: PropTypes.object.isRequired,
+ModalWindow.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   closeModal: PropTypes.func.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
 };

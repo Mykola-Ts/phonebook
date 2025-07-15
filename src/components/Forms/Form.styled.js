@@ -14,7 +14,7 @@ export const Label = styled.label`
 
 export const WrapperInput = styled.div`
   position: relative;
-  
+
   color: currentColor;
 
   transition: color var(--transition-duration) var(--transition-timing-function);
@@ -73,6 +73,14 @@ export const NumberInputIcon = styled(BsTelephone)`
   transform: translateY(-50%);
 `;
 
+export const ButtonsWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+`;
+
 export const SubmitButton = styled.button`
   display: flex;
   align-items: center;
@@ -88,13 +96,14 @@ export const SubmitButton = styled.button`
   color: var(--blue-color);
   background-color: transparent;
 
-  transition: color var(--transition-duration)
-  var(--transition-timing-function), background-color var(--transition-duration)
-  var(--transition-timing-function);
+  transition: color var(--transition-duration) var(--transition-timing-function),
+    background-color var(--transition-duration)
+      var(--transition-timing-function);
 
   &:is(:hover, :focus, :active) {
-  color: var(--white-color);
-  background-color: var(--blue-color);
+    color: var(--white-color);
+    background-color: var(--blue-color);
+  }
 `;
 
 export const Error = styled.p`

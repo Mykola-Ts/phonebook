@@ -20,13 +20,14 @@ export const UserBtn = styled.button`
   color: var(--blue-color);
   background-color: transparent;
 
-    transition: color var(--transition-duration)
-  var(--transition-timing-function), background-color var(--transition-duration)
-  var(--transition-timing-function);
+  transition: color var(--transition-duration) var(--transition-timing-function),
+    background-color var(--transition-duration)
+      var(--transition-timing-function);
 
   &:is(:hover, :focus) {
-  color: var(--white-color);
-  background-color: var(--blue-color);
+    color: var(--white-color);
+    background-color: var(--blue-color);
+  }
 `;
 
 export const UserName = styled.p`
@@ -50,9 +51,10 @@ export const LogoutBtn = styled.button`
 
   background-color: rgba(255, 255, 255, 0.7);
 
-    transition: background-color var(--transition-duration)
+  transition: background-color var(--transition-duration)
     var(--transition-timing-function);
 
-    &:is(:hover, :focus, :active) {
-  background-color: var(--white-color);
+  &:is(:hover, :focus, :active) {
+    background-color: var(--white-color);
+  }
 `;

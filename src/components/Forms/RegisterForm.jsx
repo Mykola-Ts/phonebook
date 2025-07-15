@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
 import { userSignUp } from 'redux/auth/operations';
+import { defaultErrorText } from 'helpers/helpers';
 import {
   EmailInputIcon,
   Error,
@@ -45,9 +47,12 @@ const registerSchema = object({
       'The password is long! Please enter a password with at more 18 characters.'
     ),
 });
+const registerErrorText =
+  'Oops, something went wrong. It is likely that a user with this email address already exists.';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [errorText, setErrorText] = useState('');
 
   const onSubmit = ({ name, email, password }, { resetForm }) => {
     const credentials = {
@@ -59,16 +64,22 @@ export const RegisterForm = () => {
       .unwrap()
       .then(({ user }) => {
         toast.success(`Welcome, ${user.name}!`);
+
+        resetForm();
       })
       .catch(err => {
-        err === 'Request failed with status code 400'
-          ? toast.error(
-              'Oops, something went wrong. It is likely that a user with this email address already exists.'
-            )
-          : toast.error('Oops, something went wrong. Try again.');
+        if (err === 'Request failed with status code 400') {
+          setErrorText(registerErrorText);
+          toast.error(registerErrorText);
+        } else {
+          setErrorText(defaultErrorText);
+          toast.error(defaultErrorText);
+        }
       });
+  };
 
-    resetForm();
+  const onInput = () => {
+    setErrorText('');
   };
 
   return (
@@ -86,6 +97,7 @@ export const RegisterForm = () => {
                 name="name"
                 type="text"
                 placeholder="First name Last name"
+                onInput={onInput}
               />
               <NameInputIcon size={18} />
             </WrapperInput>
@@ -99,6 +111,7 @@ export const RegisterForm = () => {
                 name="email"
                 type="email"
                 placeholder="user@mail.com"
+                onInput={onInput}
               />
               <EmailInputIcon size={18} />
             </WrapperInput>
@@ -117,6 +130,12 @@ export const RegisterForm = () => {
             </WrapperInput>
             <ErrorMessage name="password" component={Error} />
           </Label>
+
+          {errorText && (
+            <Error style={{ marginBottom: '28px', textAlign: 'center' }}>
+              {errorText}
+            </Error>
+          )}
 
           <SubmitButton type="submit">Sign up</SubmitButton>
         </Form>

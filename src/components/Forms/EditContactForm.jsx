@@ -3,10 +3,16 @@ import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { toast } from 'react-hot-toast';
 import { BiSave } from 'react-icons/bi';
+import { AiOutlineClose } from 'react-icons/ai';
 import { useContacts } from 'hooks/useContacts';
-import { contactSchema, isIncludesContact } from 'helpers/helpers';
+import {
+  contactSchema,
+  defaultErrorText,
+  isIncludesContact,
+} from 'helpers/helpers';
 import { editContact } from 'redux/contacts/operations';
 import {
+  ButtonsWrap,
   Error,
   Label,
   NameInputIcon,
@@ -45,7 +51,7 @@ export const EditContactForm = ({ contact, closeModal }) => {
       })
       .catch(error => {
         toast.remove();
-        toast.error('Oops, something went wrong. Try again.');
+        toast.error(defaultErrorText);
       });
 
     closeModal();
@@ -80,10 +86,20 @@ export const EditContactForm = ({ contact, closeModal }) => {
           <ErrorMessage name="number" component={Error} />
         </Label>
 
-        <SubmitButton type="submit">
-          <BiSave size={20} />
-          Save changes
-        </SubmitButton>
+        <ButtonsWrap>
+          <SubmitButton
+            type="button"
+            style={{ margin: 0 }}
+            onClick={() => closeModal()}
+          >
+            <AiOutlineClose size={20} />
+            Cancel changes
+          </SubmitButton>
+          <SubmitButton type="submit" style={{ margin: 0 }}>
+            <BiSave size={20} />
+            Save changes
+          </SubmitButton>
+        </ButtonsWrap>
       </Form>
     </Formik>
   );
