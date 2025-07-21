@@ -3,12 +3,12 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { selectFilterValue } from 'redux/filter/selectors';
 import { filterContacts } from 'redux/filter/slice';
 import {
-  FilterLabel,
   FilterInput,
   SearchIcon,
   WrapperInput,
   ResetBtn,
 } from './Filter.styled';
+import { Label } from 'components/Forms/Form.styled';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export const Filter = () => {
 
   return (
     <>
-      <FilterLabel>
+      <Label>
         Find contact by name or number
         <WrapperInput>
           <FilterInput
@@ -46,7 +46,7 @@ export const Filter = () => {
             </ResetBtn>
           )}
         </WrapperInput>
-      </FilterLabel>
+      </Label>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CloseBtn } from './ModalWindow.styled';
 

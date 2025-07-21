@@ -12,9 +12,9 @@ import {
   NameInputIcon,
   PasswordInputIcon,
   StyledInput,
-  SubmitButton,
   WrapperInput,
 } from 'components/Forms/Form.styled';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 const registerSchema = object({
   name: string()
@@ -137,7 +137,9 @@ export const RegisterForm = () => {
             </Error>
           )}
 
-          <SubmitButton type="submit">Sign up</SubmitButton>
+          <PrimaryButton type="submit" className="centered-btn">
+            Sign up
+          </PrimaryButton>
         </Form>
       </Formik>
     </>

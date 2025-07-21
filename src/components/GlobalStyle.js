@@ -46,6 +46,8 @@ export const GlobalStyle = createGlobalStyle`
   font-display: swap;
 }
 
+/* ---------------- VARIABLES ---------------- */
+
 :root {
   --font-family: 'DM Sans', sans-serif;
 
@@ -53,7 +55,7 @@ export const GlobalStyle = createGlobalStyle`
   --text-black-color: #111;
   --white-color: #fff;
   --gray-color: rgb(228 228 228);
-  --red-color: #ff0000;
+  --red-color: #ef4444;
   --blue-color: #5050fb;
   --error-color: rgba(255, 85, 73, 0.9);
   --success-color: rgba(0, 128, 0, 0.7);
@@ -65,19 +67,7 @@ export const GlobalStyle = createGlobalStyle`
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-  margin: 0;
-
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.13;
-  letter-spacing: -0.32px;
-
-  color: var(--text-black-color);
-  background-color: var(--background-color);
-}
+/* ---------------- RESET STYLES ---------------- */
 
 h1,
 h2,
@@ -91,20 +81,44 @@ p {
 }
 
 ul {
-  margin: 0;
   padding: 0;
+  margin: 0;
 
   list-style: none;
 }
 
 img {
   display: block;
+
   max-width: 100%;
   object-fit: cover;
 }
 
 button {
   cursor: pointer;
+
   outline: transparent;
+}
+
+a {
+  text-decoration: none;
+
+  color: currentColor;
+}
+
+/* ---------------- COMMON STYLES ---------------- */
+
+body {
+  margin: 0;
+
+  font-family: var(--font-family);
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.13;
+  letter-spacing: -0.32px;
+
+  color: var(--text-black-color);
+  background-color: var(--background-color);
 }
 `;

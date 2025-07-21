@@ -11,9 +11,9 @@ import {
   Label,
   PasswordInputIcon,
   StyledInput,
-  SubmitButton,
   WrapperInput,
 } from 'components/Forms/Form.styled';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 const loginSchema = object({
   email: string()
@@ -110,7 +110,9 @@ export const LoginForm = () => {
             </Error>
           )}
 
-          <SubmitButton type="submit">Sign in</SubmitButton>
+          <PrimaryButton type="submit" className="centered-btn">
+            Sign in
+          </PrimaryButton>
         </Form>
       </Formik>
     </>

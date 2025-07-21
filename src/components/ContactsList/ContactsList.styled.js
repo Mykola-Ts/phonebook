@@ -6,8 +6,8 @@ export const ListItem = styled.li`
   display: flex;
   align-items: center;
 
-  border-radius: 8px;
   border: 2px solid var(--gray-color);
+  border-radius: 8px;
   padding: 16px 20px;
 
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
@@ -20,8 +20,8 @@ export const ListItem = styled.li`
     margin-bottom: 20px;
   }
 
-  &:is(:hover) {
-    transform: scale(1.02, 1.1);
+  &:is(:hover, :focus) {
+    transform: scale(1.01, 1.05);
   }
 
   @media screen and (max-width: 767px) {

@@ -9,16 +9,18 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
 import { defaultErrorText } from 'helpers/helpers';
 import { EditContactForm } from 'components/Forms/EditContactForm';
-import { ModalWindow } from 'components/ContactModal/ModalWindow';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import {
-  Button,
   ContactInfo,
   ContactNumber,
   ContactName,
   AvatarWrapp,
   BtnsWrapp,
   PhoneLink,
+  ContactWrapp,
 } from './Contact.styled';
+import { Title } from 'components/Section/Section.styled';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 export const Contact = ({ contact = {} }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -59,23 +61,34 @@ export const Contact = ({ contact = {} }) => {
         <ContactNumber href={`tel:${numberHref}`}>{number}</ContactNumber>
       </ContactInfo>
 
-      <PhoneLink href={`tel:${numberHref}`}>
-        <BsFillTelephoneFill />
-      </PhoneLink>
+      <ContactWrapp>
+        <PhoneLink href={`tel:${numberHref}`}>
+          <BsFillTelephoneFill />
+        </PhoneLink>
 
-      <BtnsWrapp>
-        <Button type="button" onClick={toggleModal}>
-          <MdOutlineEdit size={20} />
-          Edit
-        </Button>
+        <BtnsWrapp>
+          <PrimaryButton
+            type="button"
+            className="contact-btn"
+            onClick={toggleModal}
+          >
+            <MdOutlineEdit size={20} />
+            Edit
+          </PrimaryButton>
 
-        <Button type="button" onClick={() => onDelete(id, name)}>
-          <GoTrash size={20} />
-          Delete
-        </Button>
-      </BtnsWrapp>
+          <PrimaryButton
+            type="button"
+            className="contact-btn delete-primary-btn"
+            onClick={() => onDelete(id, name)}
+          >
+            <GoTrash size={20} />
+            Delete
+          </PrimaryButton>
+        </BtnsWrapp>
+      </ContactWrapp>
 
       <ModalWindow closeModal={toggleModal} modalIsOpen={modalIsOpen}>
+        <Title>Edit contact</Title>
         <EditContactForm contact={contact} closeModal={toggleModal} />
       </ModalWindow>
     </>

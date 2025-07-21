@@ -6,31 +6,9 @@ export const Wrapper = styled.div`
   min-width: 120px;
 `;
 
-export const UserBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  width: 100%;
-  border-radius: 32px;
-  border: 2px solid var(--blue-color);
-  padding: 2px 8px 2px 4px;
-
-  color: var(--blue-color);
-  background-color: transparent;
-
-  transition: color var(--transition-duration) var(--transition-timing-function),
-    background-color var(--transition-duration)
-      var(--transition-timing-function);
-
-  &:is(:hover, :focus) {
-    color: var(--white-color);
-    background-color: var(--blue-color);
-  }
-`;
-
 export const UserName = styled.p`
+  margin-right: auto;
+
   font-weight: 700;
 `;
 
@@ -40,21 +18,25 @@ export const LogoutBtn = styled.button`
   left: 0;
 
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 
   width: 100%;
-  border-radius: 12px;
   border: 2px solid var(--text-black-color);
+  border-radius: 12px;
   padding: 8px 16px;
   margin: 0 auto;
 
   background-color: rgba(255, 255, 255, 0.7);
 
-  transition: background-color var(--transition-duration)
-    var(--transition-timing-function);
+  transition: color var(--transition-duration) var(--transition-timing-function),
+    background-color var(--transition-duration)
+      var(--transition-timing-function),
+    border-color var(--transition-duration) var(--transition-timing-function);
 
   &:is(:hover, :focus, :active) {
+    color: var(--red-color);
     background-color: var(--white-color);
+    border-color: var(--red-color);
   }
 `;

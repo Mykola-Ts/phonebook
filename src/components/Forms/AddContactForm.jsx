@@ -17,9 +17,9 @@ import {
   NameInputIcon,
   NumberInputIcon,
   StyledInput,
-  SubmitButton,
   WrapperInput,
 } from './Form.styled';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 export const AddContactForm = () => {
   const contacts = useContacts();
@@ -102,10 +102,10 @@ export const AddContactForm = () => {
             </Error>
           )}
 
-          <SubmitButton type="submit">
+          <PrimaryButton type="submit" className="centered-btn">
             <IoMdPersonAdd size={20} />
             Add contact
-          </SubmitButton>
+          </PrimaryButton>
         </Form>
       </Formik>
 

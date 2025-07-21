@@ -65,6 +65,20 @@ export const ContactNumber = styled.a`
   }
 `;
 
+export const ContactWrapp = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media screen and (max-width: 767px) {
+    gap: 12px;
+  }
+
+  @media screen and (max-width: 380px) {
+    flex-direction: column;
+  }
+`;
+
 export const PhoneLink = styled.a`
   display: flex;
   align-items: center;
@@ -75,10 +89,9 @@ export const PhoneLink = styled.a`
   border: 1px solid var(--success-color);
   border-radius: 50%;
   padding: 8px;
-  margin-right: 12px;
 
-  background-color: transparent;
   color: var(--success-color);
+  background-color: transparent;
 
   transition: color var(--transition-duration) var(--transition-timing-function),
     background-color var(--transition-duration)
@@ -91,47 +104,16 @@ export const PhoneLink = styled.a`
 `;
 
 export const BtnsWrapp = styled.div`
-  @media screen and (max-width: 767px) {
-    display: flex;
-  }
-`;
-
-export const Button = styled.button`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   gap: 8px;
 
-  min-width: 100px;
-  border-radius: 18px;
-  border: 1px solid var(--text-black-color);
-  padding: 4px 8px;
-
-  color: currentColor;
-  background-color: transparent;
-
-  transition: color var(--transition-duration) var(--transition-timing-function),
-    border-color var(--transition-duration) var(--transition-timing-function);
-
-  &:is(:hover, :focus, :active) {
-    color: var(--blue-color);
-    border-color: var(--blue-color);
-  }
-
-  &:last-child:is(:hover, :focus, :active) {
-    color: var(--red-color);
-    border-color: var(--red-color);
-  }
-
   @media screen and (max-width: 767px) {
-    &:not(:last-child) {
-      margin-right: 12px;
-    }
+    flex-direction: row;
+    gap: 12px;
   }
 
-  @media screen and (min-width: 768px) {
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
+  @media screen and (max-width: 380px) {
+    flex-direction: column;
   }
 `;

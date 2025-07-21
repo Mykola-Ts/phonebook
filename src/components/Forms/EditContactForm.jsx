@@ -18,9 +18,9 @@ import {
   NameInputIcon,
   NumberInputIcon,
   StyledInput,
-  SubmitButton,
   WrapperInput,
 } from './Form.styled';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 export const EditContactForm = ({ contact, closeModal }) => {
   const dispatch = useDispatch();
@@ -87,18 +87,18 @@ export const EditContactForm = ({ contact, closeModal }) => {
         </Label>
 
         <ButtonsWrap>
-          <SubmitButton
+          <PrimaryButton
             type="button"
-            style={{ margin: 0 }}
+            className="cancel-primary-btn"
             onClick={() => closeModal()}
           >
             <AiOutlineClose size={20} />
             Cancel changes
-          </SubmitButton>
-          <SubmitButton type="submit" style={{ margin: 0 }}>
+          </PrimaryButton>
+          <PrimaryButton type="submit">
             <BiSave size={20} />
             Save changes
-          </SubmitButton>
+          </PrimaryButton>
         </ButtonsWrap>
       </Form>
     </Formik>

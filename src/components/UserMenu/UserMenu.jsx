@@ -5,7 +5,8 @@ import { BiSolidDownArrow, BiUserCircle } from 'react-icons/bi';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { useAuth } from 'hooks/useAuth';
 import { userLogOut } from 'redux/auth/operations';
-import { Wrapper, UserBtn, UserName, LogoutBtn } from './UserMenu.styled';
+import { Wrapper, UserName, LogoutBtn } from './UserMenu.styled';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 export const UserMenu = () => {
   const [isShowLogoutBtn, setIsShowLogoutBtn] = useState(false);
@@ -21,11 +22,15 @@ export const UserMenu = () => {
 
   return (
     <Wrapper>
-      <UserBtn type="button" onClick={toggleLogoutBtn}>
+      <PrimaryButton
+        type="button"
+        className="user-btn"
+        onClick={toggleLogoutBtn}
+      >
         <BiUserCircle size={32} />
         <UserName>{user.name}</UserName>
         <BiSolidDownArrow size={12} />
-      </UserBtn>
+      </PrimaryButton>
 
       {isShowLogoutBtn && (
         <LogoutBtn type="button" onClick={() => dispatch(userLogOut())}>

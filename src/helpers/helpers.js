@@ -27,7 +27,7 @@ export const contactSchema = object({
   name: string()
     .required('This field is required!')
     .matches(
-      "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]?[- ']*)*$",
+      /^(?=.*\p{L})[\p{L}0-9]+((['\-\s][\p{L}0-9]+)*)?$/u,
       `Name may contain only letters, apostrophe, dash and spaces.
       For example Adrian, Jacob Mercer Charles de Batz de Castelmore d'Artagnan`
     )
