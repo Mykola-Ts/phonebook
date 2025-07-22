@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { BiSolidDownArrow, BiUserCircle } from 'react-icons/bi';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { useAuth } from 'hooks/useAuth';
+import { useClickOutside } from 'hooks/useClickOutside';
 import { userLogOut } from 'redux/auth/operations';
 import { Wrapper, UserName, LogoutBtn } from './UserMenu.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
@@ -12,12 +13,16 @@ export const UserMenu = () => {
   const [isShowLogoutBtn, setIsShowLogoutBtn] = useState(false);
 
   const dispatch = useDispatch();
+  const logoutBtnRef = useRef(null);
   const { user } = useAuth();
+
+  useClickOutside(isShowLogoutBtn, logoutBtnRef, () =>
+    setIsShowLogoutBtn(false)
+  );
 
   const toggleLogoutBtn = () => {
     toast.remove();
-
-    setIsShowLogoutBtn(!isShowLogoutBtn);
+    setIsShowLogoutBtn(prev => !prev);
   };
 
   return (
@@ -33,7 +38,11 @@ export const UserMenu = () => {
       </PrimaryButton>
 
       {isShowLogoutBtn && (
-        <LogoutBtn type="button" onClick={() => dispatch(userLogOut())}>
+        <LogoutBtn
+          type="button"
+          ref={logoutBtnRef}
+          onClick={() => dispatch(userLogOut())}
+        >
           Log Out <AiOutlineArrowRight />
         </LogoutBtn>
       )}

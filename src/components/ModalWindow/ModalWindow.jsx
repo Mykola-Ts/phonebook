@@ -18,6 +18,7 @@ const customModalStyles = {
     width: 'calc(100% - 30px)',
     maxWidth: '600px',
     minHeight: '160px',
+    padding: '32px 20px',
     marginRight: '-50%',
   },
 };
