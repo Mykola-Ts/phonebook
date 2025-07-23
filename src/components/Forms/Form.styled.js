@@ -79,14 +79,6 @@ export const NumberInputIcon = styled(BsTelephone)`
   transform: translateY(-50%);
 `;
 
-export const ButtonsWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 28px;
-`;
-
 export const Error = styled.p`
   padding: 4px;
 

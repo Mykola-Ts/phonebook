@@ -12,7 +12,6 @@ import {
 } from 'helpers/helpers';
 import { editContact } from 'redux/contacts/operations';
 import {
-  ButtonsWrap,
   Error,
   Label,
   NameInputIcon,
@@ -21,6 +20,7 @@ import {
   WrapperInput,
 } from './Form.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
+import { ButtonsWrap } from 'components/ModalWindows/ModalWindow.styled';
 
 export const EditContactForm = ({ contact, closeModal }) => {
   const dispatch = useDispatch();

@@ -26,3 +26,22 @@ export const CloseBtn = styled.button`
     color: var(--blue-color);
   }
 `;
+
+export const ButtonsWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  @media screen and (max-width: 439px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+`;
+
+export const ModalText = styled.p`
+  margin-bottom: 24px;
+
+  text-align: center;
+  font-size: 18px;
+`;

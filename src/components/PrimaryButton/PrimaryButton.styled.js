@@ -51,6 +51,12 @@ export const PrimaryButton = styled.button`
     border-color: var(--red-color);
   }
 
+  @media screen and (max-width: 439px) {
+    &.cancel-primary-btn {
+      order: 2;
+    }
+  }
+
   &:is(:hover, :focus, :active).cancel-primary-btn {
     color: var(--white-color);
     background-color: var(--red-color);

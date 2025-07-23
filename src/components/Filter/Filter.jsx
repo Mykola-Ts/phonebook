@@ -9,10 +9,15 @@ import {
   ResetBtn,
 } from './Filter.styled';
 import { Label } from 'components/Forms/Form.styled';
+import { useEffect } from 'react';
 
 export const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilterValue);
+
+  useEffect(() => {
+    dispatch(filterContacts(''));
+  }, [dispatch]);
 
   const onChange = evt => {
     const value = evt.currentTarget.value.trim();

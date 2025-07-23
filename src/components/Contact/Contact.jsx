@@ -9,7 +9,8 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
 import { defaultErrorText } from 'helpers/helpers';
 import { EditContactForm } from 'components/Forms/EditContactForm';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { ModalWindow } from 'components/ModalWindows/ModalWindow';
+import { DeleteModalWindow } from 'components/ModalWindows/DeleteModalWindow';
 import {
   ContactInfo,
   ContactNumber,
@@ -22,9 +23,26 @@ import {
 import { Title } from 'components/Section/Section.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
+const body = document.body;
+const modalVariants = {
+  editContact: 'edit',
+  deleteContact: 'delete',
+};
+
 export const Contact = ({ contact = {} }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const dispatch = useDispatch();
+
+  const toggleModal = (isOpen, variant) => {
+    isOpen ? (body.style.overflow = '') : (body.style.overflow = 'hidden');
+
+    if (variant === modalVariants.editContact) {
+      setEditModalIsOpen(prev => !prev);
+    } else if (variant === modalVariants.deleteContact) {
+      setDeleteModalIsOpen(prev => !prev);
+    }
+  };
 
   const onDelete = (id, name) => {
     dispatch(deleteContact(id))
@@ -32,19 +50,13 @@ export const Contact = ({ contact = {} }) => {
       .then(resp => {
         toast.remove();
         toast.success(`${name} deleted from contacts`);
+
+        toggleModal(deleteModalIsOpen, modalVariants.deleteContact);
       })
       .catch(error => {
         toast.remove();
         toast.error(defaultErrorText);
       });
-  };
-
-  const toggleModal = () => {
-    modalIsOpen
-      ? (document.body.style.overflow = '')
-      : (document.body.style.overflow = 'hidden');
-
-    setModalIsOpen(!modalIsOpen);
   };
 
   const { id, name, number } = contact;
@@ -70,7 +82,9 @@ export const Contact = ({ contact = {} }) => {
           <PrimaryButton
             type="button"
             className="contact-btn"
-            onClick={toggleModal}
+            onClick={() =>
+              toggleModal(editModalIsOpen, modalVariants.editContact)
+            }
           >
             <MdOutlineEdit size={20} />
             Edit
@@ -79,7 +93,9 @@ export const Contact = ({ contact = {} }) => {
           <PrimaryButton
             type="button"
             className="contact-btn delete-primary-btn"
-            onClick={() => onDelete(id, name)}
+            onClick={() =>
+              toggleModal(deleteModalIsOpen, modalVariants.deleteContact)
+            }
           >
             <GoTrash size={20} />
             Delete
@@ -87,10 +103,34 @@ export const Contact = ({ contact = {} }) => {
         </BtnsWrapp>
       </ContactWrapp>
 
-      <ModalWindow closeModal={toggleModal} modalIsOpen={modalIsOpen}>
+      <ModalWindow
+        closeModal={() =>
+          toggleModal(editModalIsOpen, modalVariants.editContact)
+        }
+        modalIsOpen={editModalIsOpen}
+      >
         <Title>Edit contact</Title>
-        <EditContactForm contact={contact} closeModal={toggleModal} />
+        <EditContactForm
+          contact={contact}
+          closeModal={() =>
+            toggleModal(editModalIsOpen, modalVariants.editContact)
+          }
+        />
       </ModalWindow>
+
+      <DeleteModalWindow
+        title="Delete contact"
+        modalText={
+          <>
+            Are you sure you want to delete the contact <strong>{name}</strong>?
+          </>
+        }
+        isOpen={deleteModalIsOpen}
+        closeModal={() =>
+          toggleModal(deleteModalIsOpen, modalVariants.deleteContact)
+        }
+        onDelete={() => onDelete(id, name)}
+      />
     </>
   );
 };

@@ -21,6 +21,8 @@ import {
 } from './Form.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
+const body = document.body;
+
 export const AddContactForm = () => {
   const contacts = useContacts();
   const dispatch = useDispatch();
@@ -43,6 +45,7 @@ export const AddContactForm = () => {
         toast.success(`${name} added to contacts`);
 
         setModalIsOpen(true);
+        body.style.overflow = 'hidden';
       })
       .catch(error => {
         toast.remove();
@@ -58,6 +61,7 @@ export const AddContactForm = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+    body.style.overflow = '';
   };
 
   return (
