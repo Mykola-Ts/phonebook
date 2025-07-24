@@ -24,6 +24,7 @@ export const AddContactSuccessModal = ({ modalIsOpen, closeModal }) => {
         <PrimaryButton
           type="button"
           onClick={() => {
+            closeModal();
             navigate('/contacts');
           }}
         >

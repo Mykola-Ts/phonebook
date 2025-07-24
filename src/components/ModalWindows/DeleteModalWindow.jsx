@@ -26,7 +26,7 @@ export const DeleteModalWindow = ({
 
         <PrimaryButton
           type="button"
-          className="cancel-primary-btn"
+          className="delete-primary-btn"
           onClick={onDelete}
         >
           <GoTrash size={20} />

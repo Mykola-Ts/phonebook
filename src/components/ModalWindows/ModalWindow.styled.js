@@ -36,6 +36,13 @@ export const ButtonsWrap = styled.div`
   @media screen and (max-width: 439px) {
     flex-direction: column;
     gap: 12px;
+
+    width: fit-content;
+    margin: 0 auto;
+
+    & button {
+      width: 100%;
+    }
   }
 `;
 

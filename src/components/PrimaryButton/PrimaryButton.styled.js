@@ -46,7 +46,8 @@ export const PrimaryButton = styled.button`
     margin: 0 auto;
   }
 
-  &.cancel-primary-btn {
+  &.cancel-primary-btn,
+  &.delete-primary-btn {
     color: var(--red-color);
     border-color: var(--red-color);
   }
@@ -55,9 +56,14 @@ export const PrimaryButton = styled.button`
     &.cancel-primary-btn {
       order: 2;
     }
+
+    &.delete-primary-btn {
+      order: -1;
+    }
   }
 
-  &:is(:hover, :focus, :active).cancel-primary-btn {
+  &:is(:hover, :focus, :active).cancel-primary-btn,
+  &:is(:hover, :focus, :active).delete-primary-btn {
     color: var(--white-color);
     background-color: var(--red-color);
   }

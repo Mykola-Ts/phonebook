@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const ContactInfo = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 4px 8px;
+  gap: 8px;
 
   margin-right: auto;
+  overflow: hidden;
 
   @media screen and (max-width: 767px) {
     justify-content: center;
 
     width: 100%;
-    margin-bottom: 16px;
 
     text-align: center;
   }
@@ -30,17 +30,21 @@ export const AvatarWrapp = styled.div`
   border-radius: 50%;
 
   box-shadow: var(--box-shadow);
+`;
 
-  @media screen and (max-width: 767px) {
-    margin-bottom: 12px;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-right: 12px;
-  }
+export const AvatarAlt = styled.span`
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
 `;
 
 export const ContactName = styled.p`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   font-size: 18px;
   font-weight: 700;
   line-height: 1.33;
@@ -48,13 +52,16 @@ export const ContactName = styled.p`
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    margin-bottom: 4px;
   }
 `;
 
 export const ContactNumber = styled.a`
   font-weight: 400;
   text-decoration: none;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   color: currentColor;
 
@@ -69,6 +76,7 @@ export const ContactWrapp = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 
   @media screen and (max-width: 767px) {
     gap: 12px;

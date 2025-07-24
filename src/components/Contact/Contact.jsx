@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { FaUserAlt } from 'react-icons/fa';
 import { GoTrash } from 'react-icons/go';
 import { MdOutlineEdit } from 'react-icons/md';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
-import { defaultErrorText } from 'helpers/helpers';
+import { defaultErrorText, linearGradients } from 'helpers/helpers';
 import { EditContactForm } from 'components/Forms/EditContactForm';
 import { ModalWindow } from 'components/ModalWindows/ModalWindow';
 import { DeleteModalWindow } from 'components/ModalWindows/DeleteModalWindow';
@@ -19,6 +18,7 @@ import {
   BtnsWrapp,
   PhoneLink,
   ContactWrapp,
+  AvatarAlt,
 } from './Contact.styled';
 import { Title } from 'components/Section/Section.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
@@ -29,7 +29,7 @@ const modalVariants = {
   deleteContact: 'delete',
 };
 
-export const Contact = ({ contact = {} }) => {
+export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -61,15 +61,22 @@ export const Contact = ({ contact = {} }) => {
 
   const { id, name, number } = contact;
   const numberHref = number.split('-').join('').split(' ').join('');
+  const firstName = name.split(' ')[0];
+  const lastName = name.split(' ')[1] || '';
+  const backgroundGradient =
+    linearGradients[ordinalNumber % linearGradients.length];
 
   return (
     <>
-      <AvatarWrapp>
-        <FaUserAlt size={32} color="gray" />
+      <AvatarWrapp style={true ? { background: backgroundGradient } : {}}>
+        <AvatarAlt>
+          {firstName.split('')[0].toUpperCase()}
+          {lastName && lastName.split('')[0].toUpperCase()}
+        </AvatarAlt>
       </AvatarWrapp>
 
       <ContactInfo>
-        <ContactName>{`${name}: `}</ContactName>
+        <ContactName>{`${name} `}</ContactName>
         <ContactNumber href={`tel:${numberHref}`}>{number}</ContactNumber>
       </ContactInfo>
 
@@ -137,4 +144,5 @@ export const Contact = ({ contact = {} }) => {
 
 Contact.propTypes = {
   contact: PropTypes.object.isRequired,
+  ordinalNumber: PropTypes.number.isRequired,
 };

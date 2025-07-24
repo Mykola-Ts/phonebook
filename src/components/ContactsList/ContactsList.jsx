@@ -7,9 +7,9 @@ export const ContactsList = () => {
 
   return contacts.length ? (
     <ul>
-      {contacts.map(contact => (
+      {contacts.map((contact, idx) => (
         <ListItem key={contact.id}>
-          <Contact contact={contact} />
+          <Contact contact={contact} ordinalNumber={idx} />
         </ListItem>
       ))}
     </ul>

@@ -5,6 +5,7 @@ export const ListItem = styled.li`
 
   display: flex;
   align-items: center;
+  gap: 16px;
 
   border: 2px solid var(--gray-color);
   border-radius: 8px;
@@ -27,6 +28,7 @@ export const ListItem = styled.li`
   @media screen and (max-width: 767px) {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 12px;
   }
 `;
 

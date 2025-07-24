@@ -6,6 +6,9 @@ import { CloseBtn } from './ModalWindow.styled';
 Modal.setAppElement('#root');
 
 const customModalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+  },
   content: {
     top: '50%',
     left: '50%',
@@ -20,6 +23,7 @@ const customModalStyles = {
     minHeight: '160px',
     padding: '32px 20px',
     marginRight: '-50%',
+    boxShadow: 'var(--box-shadow)',
   },
 };
 
