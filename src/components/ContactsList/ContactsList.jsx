@@ -1,6 +1,6 @@
+import { useVisibleContacts } from 'hooks/useContacts';
 import { Contact } from 'components/Contact/Contact';
 import { ListItem, NoContactsText } from './ContactsList.styled';
-import { useVisibleContacts } from 'hooks/useContacts';
 
 export const ContactsList = () => {
   const contacts = useVisibleContacts();

@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { useContacts, useVisibleContacts } from 'hooks/useContacts';
 import { fetchContacts } from 'redux/contacts/operations';
-import {
-  selectError,
-  selectIsLoading,
-} from 'redux/contacts/selectors';
+import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { selectFilterValue } from 'redux/filter/selectors';
 import { Section } from 'components/Section/Section';
 import { Filter } from 'components/Filter/Filter';
+import { SortContacts } from 'components/SortContacts/SortContacts';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import { Error } from 'components/Error/Error';
 import { Loader } from 'components/Loader/Loader';
@@ -42,11 +40,15 @@ const Contacts = () => {
               {!filter && (
                 <TotalContacts>Total contacts: {contacts.length}</TotalContacts>
               )}
+
               {filter && visibleContacts.length > 0 && (
                 <TotalContacts>
                   {`Total of contacts found for the query: ${visibleContacts.length}`}
                 </TotalContacts>
               )}
+
+              {visibleContacts.length > 0 && <SortContacts />}
+
               <ContactsList />
             </>
           ) : (

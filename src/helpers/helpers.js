@@ -116,3 +116,74 @@ export const linearGradients = [
   'linear-gradient(to right bottom, #fff1eb, #ace0f9)',
   'linear-gradient(to right bottom, #ffe3e3, #ffc3c3)',
 ];
+
+export const selectStyles = {
+  control: (styles, { isFocused }) => ({
+    ...styles,
+    border: isFocused
+      ? '1px solid transparent'
+      : '1px solid var(--text-black-color)',
+    outline: isFocused
+      ? '2px solid var(--blue-color)'
+      : '2px solid transparent',
+    cursor: 'pointer',
+    backgroundColor: 'white',
+    boxShadow: 'none',
+    transition:
+      'outline var(--transition-duration) var(--transition-timing-function), border-color var(--transition-duration) var(--transition-timing-function)',
+    '&:hover': {
+      borderColor: 'transparent',
+      outline: '2px solid var(--blue-color)',
+    },
+    '&:focus': {
+      border: 'transparent',
+      outline: '2px solid var(--blue-color)',
+    },
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      fontWeight: isSelected ? '700' : 'inherit',
+      color: isDisabled
+        ? '#ccc'
+        : isFocused && !isSelected
+        ? 'var(--text-black-color)'
+        : isSelected
+        ? 'var(--white-color)'
+        : data.color,
+      backgroundColor: isDisabled
+        ? undefined
+        : isSelected
+        ? 'var(--blue-color)'
+        : isFocused
+        ? 'var(--blue-color-with-transparency)'
+        : undefined,
+      cursor: isDisabled ? 'not-allowed' : 'pointer',
+
+      ':active': {
+        ...styles[':active'],
+        backgroundColor: !isDisabled
+          ? isSelected
+            ? data.color
+            : 'var(--blue-color)'
+          : undefined,
+      },
+    };
+  },
+  input: styles => ({ ...styles, padding: '2px 4px' }),
+  dropdownIndicator: (base, state) => ({
+    ...base,
+    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : 'rotate(0)',
+    padding: '2px',
+    color: state.isFocused ? 'var(--blue-color)' : '#999',
+    transition:
+      'transform var(--transition-duration) var(--transition-timing-function), color var(--transition-duration) var(--transition-timing-function)',
+
+    '&:hover': {
+      color: 'var(--blue-color)',
+    },
+    '&:focus': {
+      color: 'var(--blue-color)',
+    },
+  }),
+};

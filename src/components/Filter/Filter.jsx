@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 import { selectFilterValue } from 'redux/filter/selectors';
@@ -9,7 +10,6 @@ import {
   ResetBtn,
 } from './Filter.styled';
 import { Label } from 'components/Forms/Form.styled';
-import { useEffect } from 'react';
 
 export const Filter = () => {
   const dispatch = useDispatch();
