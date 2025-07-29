@@ -3,9 +3,11 @@ import { Section } from 'components/Section/Section';
 
 const Login = () => {
   return (
-    <Section title="Login">
-      <LoginForm />
-    </Section>
+    <main>
+      <Section title="Login">
+        <LoginForm />
+      </Section>
+    </main>
   );
 };
 

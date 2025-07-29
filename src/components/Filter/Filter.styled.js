@@ -50,7 +50,7 @@ export const ResetBtn = styled.button`
   padding: 0;
   border: none;
 
-  color: var(--black-color);
+  color: currentColor;
   background-color: transparent;
 
   transition: color var(--transition-duration) var(--transition-timing-function);

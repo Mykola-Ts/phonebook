@@ -10,7 +10,7 @@ export const CloseBtn = styled.button`
   justify-content: center;
   align-items: center;
 
-  border: 1px solid transparent;
+  border: none;
   border-radius: 50px;
   padding: 0;
 

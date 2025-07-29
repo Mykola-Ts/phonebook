@@ -32,11 +32,12 @@ const Contacts = () => {
 
   return (
     <main>
-      {!error ? (
-        <Section title="Contacts">
-          {contacts.length > 0 ? (
+      <Section title="Contacts">
+        <Filter />
+
+        {!error ? (
+          contacts.length > 0 ? (
             <>
-              <Filter />
               {!filter && (
                 <TotalContacts>Total contacts: {contacts.length}</TotalContacts>
               )}
@@ -52,14 +53,14 @@ const Contacts = () => {
               <ContactsList />
             </>
           ) : (
-            <NoContactsText>No contacts</NoContactsText>
-          )}
+            !isLoading && <NoContactsText>No contacts</NoContactsText>
+          )
+        ) : (
+          <Error />
+        )}
 
-          {isLoading && <Loader />}
-        </Section>
-      ) : (
-        <Error />
-      )}
+        {isLoading && <Loader />}
+      </Section>
     </main>
   );
 };

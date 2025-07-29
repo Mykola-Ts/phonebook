@@ -46,7 +46,7 @@ export const Filter = () => {
           <SearchIcon />
 
           {filter && (
-            <ResetBtn type="button" onClick={onReset}>
+            <ResetBtn type="button" aria-label="Reset filter" onClick={onReset}>
               <AiOutlineClose />
             </ResetBtn>
           )}

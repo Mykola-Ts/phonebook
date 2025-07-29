@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from 'react-icons/ai';
 import { GoTrash } from 'react-icons/go';
-import { ModalWindow } from './ModalWindow';
+import ModalWindow from './ModalWindow';
 import { ButtonsWrap, ModalText } from './ModalWindow.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 import { Title } from 'components/Section/Section.styled';
 
-export const DeleteModalWindow = ({
+const DeleteModalWindow = ({
   title,
   modalText,
   isOpen,
@@ -44,3 +44,5 @@ DeleteModalWindow.propTypes = {
   closeModal: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+export default DeleteModalWindow;

@@ -28,16 +28,26 @@ export const SortContacts = () => {
       sortOrderOptions[0]
   );
 
-  const onChangeSortedBy = ({ value }) => {
-    dispatch(sortContacts({ sortByValue: value, sortOrderValue: sortOrder }));
+  const onChangeSortedBy = option => {
+    dispatch(
+      sortContacts({
+        sortByValue: option.value,
+        sortOrderValue: sortOrder.value,
+      })
+    );
 
-    setSortBy(value);
+    setSortBy(option);
   };
 
-  const onChangeSortOrder = ({ value }) => {
-    dispatch(sortContacts({ sortByValue: sortBy, sortOrderValue: value }));
+  const onChangeSortOrder = option => {
+    dispatch(
+      sortContacts({
+        sortByValue: sortBy.value,
+        sortOrderValue: option.value,
+      })
+    );
 
-    setSortOrder(value);
+    setSortOrder(option);
   };
 
   return (
@@ -46,6 +56,7 @@ export const SortContacts = () => {
         options={sortByOptions}
         defaultValue={sortBy}
         styles={selectStyles}
+        aria-label="Sort contacts by value"
         onChange={onChangeSortedBy}
       />
 
@@ -53,6 +64,7 @@ export const SortContacts = () => {
         options={sortOrderOptions}
         defaultValue={sortOrder}
         styles={selectStyles}
+        aria-label="Sort contacts by order"
         onChange={onChangeSortOrder}
       />
     </Wrapper>

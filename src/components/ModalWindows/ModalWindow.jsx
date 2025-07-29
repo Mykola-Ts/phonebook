@@ -27,7 +27,7 @@ const customModalStyles = {
   },
 };
 
-export const ModalWindow = ({ children, closeModal, modalIsOpen }) => {
+const ModalWindow = ({ children, closeModal, modalIsOpen }) => {
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -37,7 +37,7 @@ export const ModalWindow = ({ children, closeModal, modalIsOpen }) => {
     >
       {children}
 
-      <CloseBtn onClick={closeModal}>
+      <CloseBtn onClick={closeModal} aria-label="Close modal">
         <AiOutlineClose />
       </CloseBtn>
     </Modal>
@@ -49,3 +49,5 @@ ModalWindow.propTypes = {
   closeModal: PropTypes.func.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
 };
+
+export default ModalWindow;

@@ -3,9 +3,11 @@ import { Section } from 'components/Section/Section';
 
 const Register = () => {
   return (
-    <Section title="Register">
-      <RegisterForm />
-    </Section>
+    <main>
+      <Section title="Register">
+        <RegisterForm />
+      </Section>
+    </main>
   );
 };
 

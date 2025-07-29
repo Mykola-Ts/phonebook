@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-hot-toast';
@@ -10,7 +10,6 @@ import {
   defaultErrorText,
   isIncludesContact,
 } from 'helpers/helpers';
-import { AddContactSuccessModal } from 'components/AddContactSuccessModal/AddContactSuccessModal';
 import {
   Error,
   Label,
@@ -20,6 +19,10 @@ import {
   WrapperInput,
 } from './Form.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
+
+const AddContactSuccessModal = lazy(() =>
+  import('../AddContactSuccessModal/AddContactSuccessModal')
+);
 
 const body = document.body;
 

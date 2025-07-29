@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { GoTrash } from 'react-icons/go';
@@ -8,8 +8,7 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
 import { defaultErrorText, linearGradients } from 'helpers/helpers';
 import { EditContactForm } from 'components/Forms/EditContactForm';
-import { ModalWindow } from 'components/ModalWindows/ModalWindow';
-import { DeleteModalWindow } from 'components/ModalWindows/DeleteModalWindow';
+import { Loader } from 'components/Loader/Loader';
 import {
   ContactInfo,
   ContactNumber,
@@ -23,6 +22,11 @@ import {
 import { Title } from 'components/Section/Section.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
+const ModalWindow = lazy(() => import('../ModalWindows/ModalWindow'));
+const DeleteModalWindow = lazy(() =>
+  import('../ModalWindows/DeleteModalWindow')
+);
+
 const body = document.body;
 const modalVariants = {
   editContact: 'edit',
@@ -34,13 +38,13 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const toggleModal = (isOpen, variant) => {
-    isOpen ? (body.style.overflow = '') : (body.style.overflow = 'hidden');
+  const toggleModal = (shouldOpen, variant) => {
+    shouldOpen ? (body.style.overflow = 'hidden') : (body.style.overflow = '');
 
     if (variant === modalVariants.editContact) {
-      setEditModalIsOpen(prev => !prev);
+      setEditModalIsOpen(shouldOpen);
     } else if (variant === modalVariants.deleteContact) {
-      setDeleteModalIsOpen(prev => !prev);
+      setDeleteModalIsOpen(shouldOpen);
     }
   };
 
@@ -51,7 +55,7 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
         toast.remove();
         toast.success(`${name} deleted from contacts`);
 
-        toggleModal(deleteModalIsOpen, modalVariants.deleteContact);
+        toggleModal(false, modalVariants.deleteContact);
       })
       .catch(error => {
         toast.remove();
@@ -81,7 +85,10 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
       </ContactInfo>
 
       <ContactWrapp>
-        <PhoneLink href={`tel:${numberHref}`}>
+        <PhoneLink
+          href={`tel:${numberHref}`}
+          aria-label={`Call the number ${numberHref}`}
+        >
           <BsFillTelephoneFill />
         </PhoneLink>
 
@@ -89,9 +96,7 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
           <PrimaryButton
             type="button"
             className="contact-btn"
-            onClick={() =>
-              toggleModal(editModalIsOpen, modalVariants.editContact)
-            }
+            onClick={() => toggleModal(true, modalVariants.editContact)}
           >
             <MdOutlineEdit size={20} />
             Edit
@@ -100,9 +105,7 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
           <PrimaryButton
             type="button"
             className="contact-btn delete-primary-btn"
-            onClick={() =>
-              toggleModal(deleteModalIsOpen, modalVariants.deleteContact)
-            }
+            onClick={() => toggleModal(true, modalVariants.deleteContact)}
           >
             <GoTrash size={20} />
             Delete
@@ -110,34 +113,33 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
         </BtnsWrapp>
       </ContactWrapp>
 
-      <ModalWindow
-        closeModal={() =>
-          toggleModal(editModalIsOpen, modalVariants.editContact)
-        }
-        modalIsOpen={editModalIsOpen}
-      >
-        <Title>Edit contact</Title>
-        <EditContactForm
-          contact={contact}
-          closeModal={() =>
-            toggleModal(editModalIsOpen, modalVariants.editContact)
-          }
-        />
-      </ModalWindow>
+      <Suspense fallback={<Loader />}>
+        <ModalWindow
+          closeModal={() => toggleModal(false, modalVariants.editContact)}
+          modalIsOpen={editModalIsOpen}
+        >
+          <Title>Edit contact</Title>
+          <EditContactForm
+            contact={contact}
+            closeModal={() => toggleModal(false, modalVariants.editContact)}
+          />
+        </ModalWindow>
+      </Suspense>
 
-      <DeleteModalWindow
-        title="Delete contact"
-        modalText={
-          <>
-            Are you sure you want to delete the contact <strong>{name}</strong>?
-          </>
-        }
-        isOpen={deleteModalIsOpen}
-        closeModal={() =>
-          toggleModal(deleteModalIsOpen, modalVariants.deleteContact)
-        }
-        onDelete={() => onDelete(id, name)}
-      />
+      <Suspense fallback={<Loader />}>
+        <DeleteModalWindow
+          title="Delete contact"
+          modalText={
+            <>
+              Are you sure you want to delete the contact{' '}
+              <strong>{name}</strong>?
+            </>
+          }
+          isOpen={deleteModalIsOpen}
+          closeModal={() => toggleModal(false, modalVariants.deleteContact)}
+          onDelete={() => onDelete(id, name)}
+        />
+      </Suspense>
     </>
   );
 };
