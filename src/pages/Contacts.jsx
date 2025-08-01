@@ -59,7 +59,7 @@ const Contacts = () => {
           <Error />
         )}
 
-        {isLoading && <Loader />}
+        {isLoading && <Loader text="Loading data, please wait..." />}
       </Section>
     </main>
   );

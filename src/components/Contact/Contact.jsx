@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { lazy, Suspense, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { GoTrash } from 'react-icons/go';
-import { MdOutlineEdit } from 'react-icons/md';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { deleteContact } from 'redux/contacts/operations';
 import { defaultErrorText, linearGradients } from 'helpers/helpers';
@@ -14,13 +12,11 @@ import {
   ContactNumber,
   ContactName,
   AvatarWrapp,
-  BtnsWrapp,
   PhoneLink,
-  ContactWrapp,
   AvatarAlt,
 } from './Contact.styled';
 import { Title } from 'components/Section/Section.styled';
-import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
+import { ContactOptions } from 'components/ContactOptions/ContactOptions';
 
 const ModalWindow = lazy(() => import('../ModalWindows/ModalWindow'));
 const DeleteModalWindow = lazy(() =>
@@ -84,15 +80,15 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
         <ContactNumber href={`tel:${numberHref}`}>{number}</ContactNumber>
       </ContactInfo>
 
-      <ContactWrapp>
-        <PhoneLink
-          href={`tel:${numberHref}`}
-          aria-label={`Call the number ${numberHref}`}
-        >
-          <BsFillTelephoneFill />
-        </PhoneLink>
+      {/* <ContactWrapp> */}
+      <PhoneLink
+        href={`tel:${numberHref}`}
+        aria-label={`Call the number ${numberHref}`}
+      >
+        <BsFillTelephoneFill />
+      </PhoneLink>
 
-        <BtnsWrapp>
+      {/* <BtnsWrapp>
           <PrimaryButton
             type="button"
             className="contact-btn"
@@ -110,8 +106,14 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
             <GoTrash size={20} />
             Delete
           </PrimaryButton>
-        </BtnsWrapp>
-      </ContactWrapp>
+        </BtnsWrapp> */}
+      {/* </ContactWrapp> */}
+
+      <ContactOptions
+        numberHref={numberHref}
+        onClickEdit={() => toggleModal(true, modalVariants.editContact)}
+        onClickDelete={() => toggleModal(true, modalVariants.deleteContact)}
+      />
 
       <Suspense fallback={<Loader />}>
         <ModalWindow

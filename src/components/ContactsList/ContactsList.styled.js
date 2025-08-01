@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ListItem = styled.li`
+  position: relative;
   transform: scale(1, 1);
 
   display: flex;
@@ -9,7 +10,7 @@ export const ListItem = styled.li`
 
   border: 2px solid var(--gray-color);
   border-radius: 8px;
-  padding: 16px 20px;
+  padding: 16px 44px 16px 20px;
 
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);

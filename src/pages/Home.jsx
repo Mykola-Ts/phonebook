@@ -13,7 +13,7 @@ const Home = () => {
         <AddContactForm />
       </Section>
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader text="Loading data, please wait..." />}
     </main>
   );
 };
