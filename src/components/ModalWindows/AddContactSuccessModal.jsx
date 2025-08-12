@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import ModalWindow from 'components/ModalWindows/ModalWindow';
-import { SuccessIcon } from './AddContactSuccessModal.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 import {
   ButtonsWrap,
   ModalText,
+  SuccessIcon,
 } from 'components/ModalWindows/ModalWindow.styled';
 
 const AddContactSuccessModal = ({ modalIsOpen, closeModal }) => {

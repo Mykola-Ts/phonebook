@@ -21,7 +21,7 @@ import {
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 const AddContactSuccessModal = lazy(() =>
-  import('../AddContactSuccessModal/AddContactSuccessModal')
+  import('../ModalWindows/AddContactSuccessModal')
 );
 
 const body = document.body;
