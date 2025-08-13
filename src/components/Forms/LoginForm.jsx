@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
 import { userLogIn } from 'redux/auth/operations';
 import { defaultErrorText } from 'helpers/helpers';
+import { ShowPasswordBtn } from 'components/ShowPasswordBtn/ShowPasswordBtn';
 import {
   EmailInputIcon,
   Error,
@@ -39,6 +40,7 @@ const loginErrorText = 'An incorrect username or password has been submitted.';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [errorText, setErrorText] = useState('');
+  const passwordInputRef = useRef(null);
 
   const onSubmit = ({ email, password }, { resetForm }) => {
     const credentials = {
@@ -97,9 +99,12 @@ export const LoginForm = () => {
                 name="password"
                 type="password"
                 placeholder="password123"
+                ref={passwordInputRef}
                 onInput={onInput}
               />
+
               <PasswordInputIcon size={18} />
+              <ShowPasswordBtn inputRef={passwordInputRef} />
             </WrapperInput>
             <ErrorMessage name="password" component={Error} />
           </Label>

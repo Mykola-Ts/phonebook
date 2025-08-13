@@ -1,8 +1,13 @@
+import React from 'react';
 import styled from 'styled-components';
 import { Field } from 'formik';
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { BsTelephone } from 'react-icons/bs';
+
+const FieldWithRef = React.forwardRef((props, ref) => (
+  <Field innerRef={ref} {...props} />
+));
 
 export const Label = styled.label`
   display: block;
@@ -26,7 +31,7 @@ export const WrapperInput = styled.div`
   }
 `;
 
-export const StyledInput = styled(Field)`
+export const StyledInput = styled(FieldWithRef)`
   display: block;
 
   width: 100%;

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-hot-toast';
 import { userSignUp } from 'redux/auth/operations';
 import { defaultErrorText } from 'helpers/helpers';
+import { ShowPasswordBtn } from 'components/ShowPasswordBtn/ShowPasswordBtn';
 import {
   EmailInputIcon,
   Error,
@@ -53,6 +54,7 @@ const registerErrorText =
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [errorText, setErrorText] = useState('');
+  const passwordInputRef = useRef(null);
 
   const onSubmit = ({ name, email, password }, { resetForm }) => {
     const credentials = {
@@ -125,8 +127,11 @@ export const RegisterForm = () => {
                 name="password"
                 type="password"
                 placeholder="password123"
+                ref={passwordInputRef}
               />
+
               <PasswordInputIcon size={18} />
+              <ShowPasswordBtn inputRef={passwordInputRef} />
             </WrapperInput>
             <ErrorMessage name="password" component={Error} />
           </Label>
