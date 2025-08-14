@@ -23,16 +23,17 @@ export const ContactOptions = ({ numberHref, onClickEdit, onClickDelete }) => {
   );
 
   return (
-    <ContactOptionsWrap>
+    <ContactOptionsWrap ref={optionsMenuRef}>
       <ContactOptionsBtn
         type="button"
+        aria-label="Options"
         onClick={() => setIsOptionsMenuOpen(prev => !prev)}
       >
         <SlOptionsVertical size={20} />
       </ContactOptionsBtn>
 
       {isOptionsMenuOpen && (
-        <ContactOptionsMenu ref={optionsMenuRef}>
+        <ContactOptionsMenu>
           <ContactOptionsMenuItem key="Call">
             <ContactOptionsMenuLink
               href={`tel:${numberHref}`}

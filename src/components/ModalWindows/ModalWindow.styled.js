@@ -50,6 +50,9 @@ export const ButtonsWrap = styled.div`
 export const ModalText = styled.p`
   margin-bottom: 24px;
 
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   text-align: center;
   font-size: 18px;
 `;

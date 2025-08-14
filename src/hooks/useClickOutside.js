@@ -11,13 +11,13 @@ export const useClickOutside = (isOpen, ref, onClickOutside) => {
     };
 
     const timeoutId = setTimeout(
-      () => document.addEventListener('click', handlerClickOutside),
+      () => document.addEventListener('click', handlerClickOutside, true),
       0
     );
 
     return () => {
       clearTimeout(timeoutId);
-      document.removeEventListener('click', handlerClickOutside);
+      document.removeEventListener('click', handlerClickOutside, true);
     };
   }, [isOpen, ref, onClickOutside]);
 };

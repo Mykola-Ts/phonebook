@@ -57,7 +57,7 @@ export const PrimaryButton = styled.button`
       order: 2;
     }
 
-    &.delete-primary-btn {
+    &:not(.contact-btn).delete-primary-btn {
       order: -1;
     }
   }
@@ -76,16 +76,14 @@ export const PrimaryButton = styled.button`
     min-width: 100px;
     border: 1px solid currentColor;
     padding: 4px 8px;
+  }
 
-    color: currentColor;
+  &.call-link {
+    color: var(--success-color);
 
     &:is(:hover, :focus, :active) {
-      color: var(--blue-color);
-      background-color: transparent;
-    }
-
-    &:is(:hover, :focus, :active).delete-primary-btn {
-      color: var(--red-color);
+      color: var(--white-color);
+      background-color: var(--success-color);
     }
   }
 `;

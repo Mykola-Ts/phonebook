@@ -5,8 +5,8 @@ export const ListItem = styled.li`
   transform: scale(1, 1);
 
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  gap: 20px;
 
   border: 2px solid var(--gray-color);
   border-radius: 8px;
@@ -29,7 +29,7 @@ export const ListItem = styled.li`
   @media screen and (max-width: 767px) {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 16px;
   }
 `;
 

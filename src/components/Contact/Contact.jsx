@@ -3,9 +3,13 @@ import { lazy, Suspense, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { BsFillTelephoneFill } from 'react-icons/bs';
+import { MdOutlineEdit } from 'react-icons/md';
+import { GoTrash } from 'react-icons/go';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { deleteContact } from 'redux/contacts/operations';
 import { defaultErrorText, linearGradients } from 'helpers/helpers';
 import { EditContactForm } from 'components/Forms/EditContactForm';
+import { ContactOptions } from 'components/ContactOptions/ContactOptions';
 import { Loader } from 'components/Loader/Loader';
 import {
   ContactInfo,
@@ -14,9 +18,12 @@ import {
   AvatarWrapp,
   PhoneLink,
   AvatarAlt,
+  ContactWrapp,
+  BtnsWrapp,
+  ShowMoreBtn,
 } from './Contact.styled';
 import { Title } from 'components/Section/Section.styled';
-import { ContactOptions } from 'components/ContactOptions/ContactOptions';
+import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 const ModalWindow = lazy(() => import('../ModalWindows/ModalWindow'));
 const DeleteModalWindow = lazy(() =>
@@ -32,6 +39,7 @@ const modalVariants = {
 export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  const [isShowMore, setIsShowMore] = useState(false);
   const dispatch = useDispatch();
 
   const toggleModal = (shouldOpen, variant) => {
@@ -68,27 +76,56 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
 
   return (
     <>
-      <AvatarWrapp style={true ? { background: backgroundGradient } : {}}>
-        <AvatarAlt>
-          {firstName.split('')[0].toUpperCase()}
-          {lastName && lastName.split('')[0].toUpperCase()}
-        </AvatarAlt>
-      </AvatarWrapp>
+      <ContactWrapp>
+        <AvatarWrapp style={true ? { background: backgroundGradient } : {}}>
+          <AvatarAlt>
+            {firstName.split('')[0].toUpperCase()}
+            {lastName && lastName.split('')[0].toUpperCase()}
+          </AvatarAlt>
+        </AvatarWrapp>
 
-      <ContactInfo>
-        <ContactName>{`${name} `}</ContactName>
-        <ContactNumber href={`tel:${numberHref}`}>{number}</ContactNumber>
-      </ContactInfo>
+        <ContactInfo $expanded={Boolean(isShowMore)}>
+          <ContactName
+            $expanded={Boolean(isShowMore)}
+            className="js-contact-name"
+          >{`${name} `}</ContactName>
+          <ContactNumber href={`tel:${numberHref}`}>{number}</ContactNumber>
+        </ContactInfo>
 
-      {/* <ContactWrapp> */}
-      <PhoneLink
-        href={`tel:${numberHref}`}
-        aria-label={`Call the number ${numberHref}`}
+        {!isShowMore && (
+          <PhoneLink
+            href={`tel:${numberHref}`}
+            aria-label={`Call the number ${numberHref}`}
+          >
+            <BsFillTelephoneFill />
+          </PhoneLink>
+        )}
+      </ContactWrapp>
+
+      <ContactOptions
+        numberHref={numberHref}
+        onClickEdit={() => toggleModal(true, modalVariants.editContact)}
+        onClickDelete={() => toggleModal(true, modalVariants.deleteContact)}
+      />
+
+      <ShowMoreBtn
+        type="button"
+        aria-label="Toggle show more"
+        onClick={() => setIsShowMore(prev => !prev)}
       >
-        <BsFillTelephoneFill />
-      </PhoneLink>
+        {isShowMore ? <IoIosArrowUp size={18} /> : <IoIosArrowDown size={18} />}
+      </ShowMoreBtn>
 
-      {/* <BtnsWrapp>
+      {isShowMore && (
+        <BtnsWrapp>
+          <PrimaryButton
+            as="a"
+            href={`tel:${numberHref}`}
+            className="contact-btn call-link"
+          >
+            <BsFillTelephoneFill size={16} /> Call
+          </PrimaryButton>
+
           <PrimaryButton
             type="button"
             className="contact-btn"
@@ -106,14 +143,8 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
             <GoTrash size={20} />
             Delete
           </PrimaryButton>
-        </BtnsWrapp> */}
-      {/* </ContactWrapp> */}
-
-      <ContactOptions
-        numberHref={numberHref}
-        onClickEdit={() => toggleModal(true, modalVariants.editContact)}
-        onClickDelete={() => toggleModal(true, modalVariants.deleteContact)}
-      />
+        </BtnsWrapp>
+      )}
 
       <Suspense fallback={<Loader />}>
         <ModalWindow
