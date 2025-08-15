@@ -1,18 +1,19 @@
+import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { BiSolidDownArrow, BiUserCircle } from 'react-icons/bi';
+import { BiSolidDownArrow, BiSolidUpArrow, BiUserCircle } from 'react-icons/bi';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { useAuth } from 'hooks/useAuth';
 import { useClickOutside } from 'hooks/useClickOutside';
 import { userLogOut } from 'redux/auth/operations';
 import LogoutModalWindow from 'components/ModalWindows/LogoutModalWindow';
-import { Wrapper, UserName, LogoutBtn } from './UserMenu.styled';
+import { UserName, LogoutBtn, UserMenuWrapper } from './UserMenu.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
 
 const body = document.body;
 
-export const UserMenu = () => {
+export const UserMenu = ({ isMobileMenu = false, onCloseMobileMenu }) => {
   const [isShowLogoutBtn, setIsShowLogoutBtn] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,6 +38,11 @@ export const UserMenu = () => {
 
   const onLogoutUser = () => {
     closeModal();
+
+    if (onCloseMobileMenu) {
+      onCloseMobileMenu(false);
+    }
+
     dispatch(userLogOut());
   };
 
@@ -46,7 +52,7 @@ export const UserMenu = () => {
   };
 
   return (
-    <Wrapper>
+    <UserMenuWrapper ref={logoutBtnRef} $isMobileMenu={Boolean(isMobileMenu)}>
       <PrimaryButton
         type="button"
         className="user-btn"
@@ -54,11 +60,16 @@ export const UserMenu = () => {
       >
         <BiUserCircle size={32} />
         <UserName>{user.name}</UserName>
-        <BiSolidDownArrow size={12} />
+
+        {isShowLogoutBtn ? (
+          <BiSolidUpArrow size={12} />
+        ) : (
+          <BiSolidDownArrow size={12} />
+        )}
       </PrimaryButton>
 
       {isShowLogoutBtn && (
-        <LogoutBtn type="button" ref={logoutBtnRef} onClick={onClickLogoutBtn}>
+        <LogoutBtn type="button" onClick={onClickLogoutBtn}>
           Log Out <AiOutlineArrowRight />
         </LogoutBtn>
       )}
@@ -68,6 +79,11 @@ export const UserMenu = () => {
         closeModal={closeModal}
         onLogout={onLogoutUser}
       />
-    </Wrapper>
+    </UserMenuWrapper>
   );
+};
+
+UserMenu.propTypes = {
+  isMobileMenu: PropTypes.bool,
+  onCloseMobileMenu: PropTypes.func,
 };

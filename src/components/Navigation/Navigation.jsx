@@ -1,20 +1,21 @@
-import { useAuth } from 'hooks/useAuth';
-import { Logo, LogoText, Nav, NavList, StyledLink } from './Navigation.styled';
+import PropTypes from 'prop-types';
 import logoImg from '../../img/logo.png';
+import { NavList } from './NavList';
+import { Logo, LogoText, Nav } from './Navigation.styled';
 
-export const Navigation = () => {
-  const { isLoggedIn } = useAuth();
-
+export const Navigation = ({ onCloseMobileMenu }) => {
   return (
     <Nav>
-      <Logo to="/">
+      <Logo to="/" onClick={onCloseMobileMenu}>
         <img src={logoImg} alt="Logo" width={28} />
         <LogoText>Phonebook</LogoText>
       </Logo>
-      <NavList>
-        {isLoggedIn && <StyledLink to="/">Home</StyledLink>}
-        {isLoggedIn && <StyledLink to="/contacts">Contacts</StyledLink>}
-      </NavList>
+
+      <NavList />
     </Nav>
   );
+};
+
+Navigation.propTypes = {
+  setIsOpenMobMenu: PropTypes.func,
 };

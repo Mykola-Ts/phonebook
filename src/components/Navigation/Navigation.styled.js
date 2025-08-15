@@ -11,18 +11,36 @@ export const Nav = styled.nav`
   }
 `;
 
-export const NavList = styled.div`
+export const NavListStyled = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
 
   max-width: 768px;
+
+  @media screen and (max-width: 767px) {
+    display: ${({ $isMobileMenu }) => ($isMobileMenu ? 'flex' : 'none')};
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    height: 100%;
+
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.5px;
+
+    & a {
+      padding: 8px;
+    }
+  }
 `;
 
 export const Logo = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 
   height: 25px;
 
@@ -34,7 +52,7 @@ export const Logo = styled(Link)`
 `;
 
 export const LogoText = styled.p`
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 319px) {
     display: none;
   }
 `;

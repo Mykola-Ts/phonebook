@@ -77,11 +77,14 @@ export const ContactName = styled.p`
   word-break: break-all;
   text-overflow: ellipsis;
 
-  text-align: center;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.33;
   letter-spacing: -0.36px;
+
+  @media screen and (max-width: 380px) {
+    text-align: center;
+  }
 `;
 
 export const ContactNumber = styled.a`

@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const UserMenuWrapper = styled.div`
   position: relative;
 
   min-width: 120px;
+  width: fit-content;
+
+  @media screen and (max-width: 767px) {
+    display: ${({ $isMobileMenu }) => ($isMobileMenu ? 'block' : 'none')};
+
+    margin-bottom: 30%;
+  }
 `;
 
 export const UserName = styled.p`
