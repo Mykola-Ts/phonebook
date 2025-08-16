@@ -36,8 +36,8 @@ export const contactSchema = object({
       'The name is short! Please enter a name with at least 2 characters.'
     )
     .max(
-      30,
-      'The name is long! Please enter a name with at more 30 characters.'
+      50,
+      'The name is long! Please enter a name with at more 50 characters.'
     )
     .trim(),
   number: string()

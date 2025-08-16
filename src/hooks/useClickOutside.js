@@ -10,14 +10,21 @@ export const useClickOutside = (isOpen, ref, onClickOutside) => {
       }
     };
 
-    const timeoutId = setTimeout(
-      () => document.addEventListener('click', handlerClickOutside, true),
-      0
-    );
+    const handlerPressEscape = evt => {
+      if (evt.code === 'Escape') {
+        onClickOutside();
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('click', handlerClickOutside, true);
+      window.addEventListener('keydown', handlerPressEscape);
+    }, 0);
 
     return () => {
       clearTimeout(timeoutId);
       document.removeEventListener('click', handlerClickOutside, true);
+      window.removeEventListener('keydown', handlerPressEscape);
     };
   }, [isOpen, ref, onClickOutside]);
 };
