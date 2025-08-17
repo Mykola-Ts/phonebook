@@ -35,7 +35,11 @@ export const AppBar = () => {
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
 
           {isLoggedIn && (
-            <MobileMenuBtn type="button" onClick={onToggleMobileMenu}>
+            <MobileMenuBtn
+              type="button"
+              aria-label="Toggle mobile menu"
+              onClick={onToggleMobileMenu}
+            >
               {isOpenMobMenu ? (
                 <AiOutlineClose size={28} strokeWidth={0.5} />
               ) : (
