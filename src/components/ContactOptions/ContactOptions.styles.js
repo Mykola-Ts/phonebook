@@ -35,9 +35,8 @@ export const ContactOptionsBtn = styled.button`
 
 export const ContactOptionsMenu = styled.ul`
   position: absolute;
-  top: 0;
-  right: 20px;
-  z-index: 10;
+  transform: translateX(-100%);
+  z-index: 100;
 
   display: flex;
   flex-direction: column;

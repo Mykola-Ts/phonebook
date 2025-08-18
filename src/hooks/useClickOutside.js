@@ -5,8 +5,10 @@ export const useClickOutside = (isOpen, ref, onClickOutside) => {
     if (!isOpen) return;
 
     const handlerClickOutside = evt => {
-      if (ref.current && !ref.current.contains(evt.target)) {
-        onClickOutside();
+      const target = evt.target;
+
+      if (ref.current && !ref.current.contains(target)) {
+        onClickOutside(target);
       }
     };
 
