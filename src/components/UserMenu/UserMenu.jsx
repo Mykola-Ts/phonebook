@@ -59,7 +59,7 @@ export const UserMenu = ({ isMobileMenu = false, onCloseMobileMenu }) => {
         onClick={toggleLogoutBtn}
       >
         <BiUserCircle size={32} />
-        <UserName>{user.name}</UserName>
+        <UserName>{user.name.split(' ')[0]}</UserName>
 
         {isShowLogoutBtn ? (
           <BiSolidUpArrow size={12} />

@@ -7,7 +7,7 @@ import { MdOutlineEdit } from 'react-icons/md';
 import { GoTrash } from 'react-icons/go';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { deleteContact } from 'redux/contacts/operations';
-import { defaultErrorText, linearGradients } from 'helpers/helpers';
+import { defaultErrorText } from 'helpers/helpers';
 import { EditContactForm } from 'components/Forms/EditContactForm';
 import { ContactOptions } from 'components/ContactOptions/ContactOptions';
 import { Loader } from 'components/Loader/Loader';
@@ -15,15 +15,14 @@ import {
   ContactInfo,
   ContactNumber,
   ContactName,
-  AvatarWrapp,
   PhoneLink,
-  AvatarAlt,
   ContactWrapp,
   BtnsWrapp,
   ShowMoreBtn,
 } from './Contact.styled';
 import { Title } from 'components/Section/Section.styled';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton.styled';
+import { Avatar } from 'components/Avatar/Avatar';
 
 const ModalWindow = lazy(() => import('../ModalWindows/ModalWindow'));
 const DeleteModalWindow = lazy(() =>
@@ -69,20 +68,11 @@ export const Contact = ({ contact = {}, ordinalNumber = 0 }) => {
 
   const { id, name, number } = contact;
   const numberHref = number.split('-').join('').split(' ').join('');
-  const firstName = name.split(' ')[0];
-  const lastName = name.split(' ')[1] || '';
-  const backgroundGradient =
-    linearGradients[ordinalNumber % linearGradients.length];
 
   return (
     <>
       <ContactWrapp>
-        <AvatarWrapp style={true ? { background: backgroundGradient } : {}}>
-          <AvatarAlt>
-            {firstName.split('')[0].toUpperCase()}
-            {lastName && lastName.split('')[0].toUpperCase()}
-          </AvatarAlt>
-        </AvatarWrapp>
+        <Avatar name={name} ordinalNumber={ordinalNumber} />
 
         <ContactInfo $expanded={Boolean(isShowMore)}>
           <ContactName

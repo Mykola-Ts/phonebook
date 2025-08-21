@@ -21,8 +21,9 @@ export const UserName = styled.p`
 
 export const LogoutBtn = styled.button`
   position: absolute;
-  bottom: -100%;
+  bottom: 0;
   left: 0;
+  transform: translateY(100%);
 
   display: flex;
   justify-content: space-between;
