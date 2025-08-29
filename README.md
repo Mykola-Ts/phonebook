@@ -1,113 +1,209 @@
-# React homework template
+# 📔 Phonebook
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+Phonebook is a simple web application for managing contacts. It allows users to
+easily add, search, edit, and delete phone numbers in a convenient interface,
+making contact management fast and efficient.
 
-## Создание репозитория по шаблону
+![App logo](./assets/logo.jpg)
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+## 📑 Table of Contents
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+- [About the Project](#-about-the-project)
+- [Web App Structure](#-web-app-structure)
+- [Useful Links](#-useful-links)
+- [Technologies Used](#-technologies-used)
+- [Libraries Used](#-libraries-used)
+- [Folder and File Structure](#-folder-and-file-structure)
+- [Features](#-features)
+- [PageSpeed Results](#-pagespeed-results)
+- [Installation & Setup](#-installation--setup)
+- [Author](#-author)
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+## 📝 About the Project
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+This project is a responsive two-page web application developed as a Phonebook.
+It allows users to create, edit, search, and manage contacts in a simple and
+intuitive interface. The application provides a fast and convenient way to store
+phone numbers, ensuring efficient contact management.
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
+The app is built with React and modern JavaScript, featuring component-based
+architecture and state management with Redux. It includes a responsive layout,
+real-time search filtering, and local data storage for a smooth and
+user-friendly experience across devices.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+![Web app start page](./assets/phonebook.jpg)
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
+## 🧩 Web App Structure
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+## 🔗 Useful Links
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
+- [Live Demo](https://mykola-ts.github.io/phonebook/) — deployed version of the
+  web app
 
-## Подготовка к работе
+- [GitHub Repository](https://github.com/Mykola-Ts/phonebook) — source code of
+  the project
 
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
+## 🛠 Technologies Used
 
-## Деплой
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- React
+- Redux Toolkit — state management solution
+- React Router DOM — routing and navigation
+- Styled Components — CSS-in-JS styling
+- Git / GitHub — version control and collaboration
+- ESLint — code linting and style consistency
 
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
+## 📦 Libraries Used
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+- [@reduxjs/toolkit](https://redux-toolkit.js.org/) — official, opinionated
+  Redux wrapper with simplified API
+- [react-redux](https://react-redux.js.org/) — React bindings for Redux
+- [redux-persist](https://www.npmjs.com/package/redux-persist) — persist and
+  rehydrate Redux store
+- [react-router-dom](https://reactrouter.com/) — routing for React applications
+- [axios](https://axios-http.com/) — promise-based HTTP client
+- [formik](https://formik.org/) — form handling in React
+- [yup](http://npmjs.com/package/yup) — schema validation for forms
+- [lodash.throttle](https://lodash.com/docs/4.17.15#throttle) — utility to
+  control function execution rate
+- [react-hot-toast](https://react-hot-toast.com/) — beautiful notifications &
+  toasts
+- [react-icons](https://react-icons.github.io/react-icons/) — popular icon packs
+  for React
+- [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner) —
+  loading spinners for React
+- [react-modal](https://www.npmjs.com/package/react-modal) — accessible modal
+  dialog component
+- [react-select](https://react-select.com/home) — customizable select dropdowns
+- [modern-normalize](https://github.com/sindresorhus/modern-normalize) —
+  normalize default browser styles
+- [styled-components](https://styled-components.com/) — CSS-in-JS styling
+  library
 
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
+## 📁 Folder and File Structure
 
-![GitHub Pages settings](./assets/repo-settings.png)
+- **.github/**: GitHub-specific configuration and workflows.
 
-### Статус деплоя
+- **assets/**: Folder stores images used in the README.md file to visually
+  document and represent the project.
 
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
+- **public**: Contains static assets that are served directly without
+  processing. Files inside are copied to the build folder as-is and can be
+  accessed by their root path.
 
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
+- **src/**: The main source folder of the React application. Contains all the
+  code, components, assets, and logic of the project:
 
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
+  - **components/**: Reusable UI components of the application (buttons, forms,
+    modals, headers, etc.).
 
-![Deployment status](./assets/deploy-status.png)
+  - **fonts/**: Custom fonts used in the project.
 
-### Живая страница
+  - **helpers/**: Utility functions or helper modules that provide reusable
+    logic across the app.
 
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+  - **hooks/**: Custom React hooks that encapsulate logic for state, effects, or
+    reusable patterns.
 
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
+  - **img/**: Images and graphic assets used in the application.
 
-### Маршрутизация
+  - **pages/**: Page-level components representing different views/routes of the
+    app.
 
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
+  - **redux/**: Redux state management logic, including slices, actions, and
+    store configuration.
 
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
+  - **index.js**: The main entry point of the React app. Renders the root
+    component into the DOM (ReactDOM.createRoot).
 
-## Как это работает
+- **.editorconfig**: Editor configuration file.
 
-![How it works](./assets/how-it-works.png)
+- **.gitignore**: Specifies which files and directories to ignore in Git.
 
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
+- **.prettierrc.json**: Prettier configuration for code formatting.
+
+- **jsconfig.json**: Configuration file for JavaScript/TypeScript in VS Code —
+  defines compiler options, path aliases, and IntelliSense settings.
+
+- **package.json**: Contains metadata about the project and dependencies.
+
+- **README.md**: Project documentation and setup instructions.
+
+- **uk_translation.yml**: Translation configuration file — specifies source
+  files and where localized (e.g., Ukrainian) translations should be stored.
+
+## 🎯 Features
+
+- **Responsive Design** Web app adapts seamlessly to different screen sizes:
+  desktop, tablet, and mobile devices, ensuring a smooth user experience on any
+  device.
+
+- **Mobile Menu** Slide-in mobile navigation menu and proper event handling. The
+  menu closes when clicking the close button.
+
+- **Keyboard Accessibility** Modal window and navigation elements are accessible
+  via keyboard (e.g. Esc to close modals).
+
+- **Clean & Modular Code** Code is split into logical modules.
+
+- **Performance & Accessibility** The web app achieves high performance,
+  accessibility, best practices, and SEO standards. Optimized code and structure
+  ensure fast loading, smooth interactions, and an inclusive, user-friendly
+  experience across all devices.
+
+## 🚀 PageSpeed Results
+
+Google's PageSpeed Insights was used to analyze the performance of the publicly
+accessible page of the Phonebook web app on both mobile and desktop devices. The
+results indicate strong performance in key areas, providing a smooth user
+experience for public users.
+
+- **📱 Mobile Performance:**
+
+![Mobile Home Page Performance](./assets/page-speed-mobile.jpg)
+
+- **💻 Desktop Performance:**
+
+![Desktop Home Page Performance](./assets/page-speed-desktop.jpg)
+
+These results reflect that the publicly available part of the web app is
+optimized for fast loading times and high usability across devices.
+
+## 🏗 Installation & Setup
+
+To run the project locally, follow these steps:
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Mykola-Ts/phonebook.git
+   cd phonebook
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+    npm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+    npm start
+   ```
+
+4. **Open in browser**
+
+Visit http://localhost:3000/phonebook to view the project.
+
+## 👨‍💻 Author
+
+**Mykola Tsybulskyi**
+
+🔗 GitHub https://github.com/Mykola-Ts
+
+🔗 Email tsybulskiyk@gmail.com
+
+🔗 LinkedIn https://www.linkedin.com/in/mykola-tsybulskyi

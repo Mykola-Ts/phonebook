@@ -58,9 +58,15 @@ export const contactSchema = object({
 
 export const toastOptions = {
   duration: 4000,
+  style: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    overflowWrap: 'break-word',
+    wordBreak: 'break-word',
+  },
   success: {
     style: {
-      color: 'var(--white-color)',
+      color: 'black',
       background: 'var(--success-color)',
     },
     iconTheme: {

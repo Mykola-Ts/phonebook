@@ -53,8 +53,6 @@ export const ContactName = styled.p`
   max-width: ${({ $expanded }) => ($expanded ? 'none' : '100%')};
 
   overflow: hidden;
-  overflow-wrap: break-word;
-  word-break: break-all;
   text-overflow: ellipsis;
 
   font-size: 18px;
