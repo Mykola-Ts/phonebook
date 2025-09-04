@@ -1,7 +1,7 @@
 # 📔 Phonebook
 
-Phonebook is a simple web application for managing contacts. It allows users to
-easily add, search, edit, and delete phone numbers in a convenient interface,
+**Phonebook** is a simple web application for managing contacts. It allows users
+to easily add, search, edit, and delete phone numbers in a convenient interface,
 making contact management fast and efficient.
 
 ![App logo](./assets/logo.jpg)
@@ -33,7 +33,49 @@ user-friendly experience across devices.
 
 ![Web app start page](./assets/phonebook.jpg)
 
-## 🧩 Web App Structure
+## 🏗 Web App Structure
+
+The Phonebook web app consists of several main pages and modal dialogs that
+together provide full contact management functionality.
+
+**📃 Main Pages:**
+
+- **Login Page** — allows existing users to log in using email and password;
+
+- **Register Page** — provides new users with the ability to create an account
+  by entering name, email, and password;
+
+- **Add Contact Page** — a form for creating new contacts by entering a name and
+  phone number;
+
+- **Contacts Page** — the core interface where users can view, search, sort, and
+  manage their saved contacts.
+
+**🗨 Modal Windows:**
+
+- **Add Contact Success Modal** — confirms that a new contact has been
+  successfully added, with the options 'Stay on this page' or 'Go to Contacts';
+
+- **Edit Contact Modal** — allows updating an existing contact’s details (name
+  and number) with 'Save changes' and 'Cancel' options;
+
+- **Delete Contact Confirmation** — asks the user to confirm before permanently
+  deleting a contact;
+
+- **Logout Confirmation** — asks the user to confirm before ending the current
+  session.
+
+**🧩 Core Elements:**
+
+- **Header** — contains the app name and logo, navigation links (Home,
+  Contacts), and user controls (Register, Login, Logout, user avatar);
+
+- **Search and Filter Tools** — located on the Contacts page, provide searching
+  by name/number and sorting the contact list by name, number, or creation date
+  in ascending or descending order;
+
+- **Contact List** — displays all saved contacts with action buttons (Call,
+  Edit, Delete).
 
 ## 🔗 Useful Links
 
@@ -58,100 +100,143 @@ user-friendly experience across devices.
 ## 📦 Libraries Used
 
 - [@reduxjs/toolkit](https://redux-toolkit.js.org/) — official, opinionated
-  Redux wrapper with simplified API
-- [react-redux](https://react-redux.js.org/) — React bindings for Redux
+  Redux wrapper with simplified API;
+- [react-redux](https://react-redux.js.org/) — React bindings for Redux;
 - [redux-persist](https://www.npmjs.com/package/redux-persist) — persist and
-  rehydrate Redux store
-- [react-router-dom](https://reactrouter.com/) — routing for React applications
-- [axios](https://axios-http.com/) — promise-based HTTP client
-- [formik](https://formik.org/) — form handling in React
-- [yup](http://npmjs.com/package/yup) — schema validation for forms
+  rehydrate Redux store;
+- [react-router-dom](https://reactrouter.com/) — routing for React applications;
+- [axios](https://axios-http.com/) — promise-based HTTP client;
+- [formik](https://formik.org/) — form handling in React;
+- [yup](http://npmjs.com/package/yup) — schema validation for forms;
 - [lodash.throttle](https://lodash.com/docs/4.17.15#throttle) — utility to
-  control function execution rate
+  control function execution rate;
 - [react-hot-toast](https://react-hot-toast.com/) — beautiful notifications &
-  toasts
+  toasts;
 - [react-icons](https://react-icons.github.io/react-icons/) — popular icon packs
-  for React
+  for React;
 - [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner) —
-  loading spinners for React
+  loading spinners for React;
 - [react-modal](https://www.npmjs.com/package/react-modal) — accessible modal
-  dialog component
-- [react-select](https://react-select.com/home) — customizable select dropdowns
+  dialog component;
+- [react-select](https://react-select.com/home) — customizable select dropdowns;
 - [modern-normalize](https://github.com/sindresorhus/modern-normalize) —
-  normalize default browser styles
+  normalize default browser styles;
 - [styled-components](https://styled-components.com/) — CSS-in-JS styling
-  library
+  library.
 
 ## 📁 Folder and File Structure
 
-- **.github/**: GitHub-specific configuration and workflows.
+- **.github/**: GitHub-specific configuration and workflows;
 
 - **assets/**: Folder stores images used in the README.md file to visually
-  document and represent the project.
+  document and represent the project;
 
 - **public**: Contains static assets that are served directly without
   processing. Files inside are copied to the build folder as-is and can be
-  accessed by their root path.
+  accessed by their root path;
 
 - **src/**: The main source folder of the React application. Contains all the
   code, components, assets, and logic of the project:
 
   - **components/**: Reusable UI components of the application (buttons, forms,
-    modals, headers, etc.).
+    modals, headers, etc.);
 
-  - **fonts/**: Custom fonts used in the project.
+  - **fonts/**: Custom fonts used in the project;
 
   - **helpers/**: Utility functions or helper modules that provide reusable
-    logic across the app.
+    logic across the app;
 
   - **hooks/**: Custom React hooks that encapsulate logic for state, effects, or
-    reusable patterns.
+    reusable patterns;
 
-  - **img/**: Images and graphic assets used in the application.
+  - **img/**: Images and graphic assets used in the application;
 
   - **pages/**: Page-level components representing different views/routes of the
-    app.
+    app;
 
   - **redux/**: Redux state management logic, including slices, actions, and
-    store configuration.
+    store configuration;
 
   - **index.js**: The main entry point of the React app. Renders the root
     component into the DOM (ReactDOM.createRoot).
 
-- **.editorconfig**: Editor configuration file.
+- **.editorconfig**: Editor configuration file;
 
-- **.gitignore**: Specifies which files and directories to ignore in Git.
+- **.gitignore**: Specifies which files and directories to ignore in Git;
 
-- **.prettierrc.json**: Prettier configuration for code formatting.
+- **.prettierrc.json**: Prettier configuration for code formatting;
 
 - **jsconfig.json**: Configuration file for JavaScript/TypeScript in VS Code —
-  defines compiler options, path aliases, and IntelliSense settings.
+  defines compiler options, path aliases, and IntelliSense settings;
 
-- **package.json**: Contains metadata about the project and dependencies.
+- **package.json**: Contains metadata about the project and dependencies;
 
-- **README.md**: Project documentation and setup instructions.
+- **README.md**: Project documentation and setup instructions;
 
 - **uk_translation.yml**: Translation configuration file — specifies source
   files and where localized (e.g., Ukrainian) translations should be stored.
 
 ## 🎯 Features
 
-- **Responsive Design** Web app adapts seamlessly to different screen sizes:
-  desktop, tablet, and mobile devices, ensuring a smooth user experience on any
-  device.
+- **User Authentication**  
+  Secure login and registration allow users to create a personal account for
+  managing their own contact list.
 
-- **Mobile Menu** Slide-in mobile navigation menu and proper event handling. The
-  menu closes when clicking the close button.
+- **Password Visibility Toggle**  
+  Users can easily toggle password visibility when entering credentials on the
+  login or registration form.
 
-- **Keyboard Accessibility** Modal window and navigation elements are accessible
-  via keyboard (e.g. Esc to close modals).
+- **Add New Contacts**  
+  Contacts can be added with name and phone number. Built-in validation ensures
+  correct input, and if a contact with the same name or number already exists, a
+  warning is displayed.
 
-- **Clean & Modular Code** Code is split into logical modules.
+- **Contact List View**  
+  A clean and structured list makes it easy to browse through saved contacts.
 
-- **Performance & Accessibility** The web app achieves high performance,
-  accessibility, best practices, and SEO standards. Optimized code and structure
-  ensure fast loading, smooth interactions, and an inclusive, user-friendly
-  experience across all devices.
+- **Search & Filtering Tools**  
+  Quickly find contacts by name or phone number. Sorting is available by name,
+  number, or creation date in both ascending and descending order.
+
+- **Edit & Delete Contacts**  
+  Existing contacts can be updated or removed with just a few clicks.
+
+- **Confirmation Modals**  
+  Before deleting a contact or logging out, a modal confirmation appears,
+  helping to prevent accidental deletions or sign-outs.
+
+- **Direct Call Option**  
+  Users can initiate a phone call directly from a contact card with a single
+  click.
+
+- **Contextual Action Menu**  
+  Extra actions (edit/delete) are neatly hidden under a dropdown menu or appear
+  in expanded contact view to keep the interface uncluttered.
+
+- **Minimalist UI Design**  
+  The interface follows a clean, distraction-free design approach, improving
+  usability and focusing on essential actions. Intuitive layout with clear
+  navigation.
+
+- **Responsive Design**  
+  Optimized for desktop, tablet, and mobile devices, ensuring a seamless
+  experience across all screen sizes.
+
+- **Mobile Menu**  
+  Slide-in mobile navigation menu and proper event handling. The menu closes
+  when clicking the close button.
+
+- **Keyboard Accessibility**  
+  Modal windows and navigation elements support keyboard interactions (e.g., Esc
+  to close modals), improving accessibility.
+
+- **Clean & Modular Code**  
+  Code is split into logical modules.
+
+- **Performance & Accessibility**  
+  The web app achieves high performance, accessibility, best practices, and SEO
+  standards. Optimized code and structure ensure fast loading, smooth
+  interactions, and an inclusive, user-friendly experience across all devices.
 
 ## 🚀 PageSpeed Results
 
@@ -171,7 +256,7 @@ experience for public users.
 These results reflect that the publicly available part of the web app is
 optimized for fast loading times and high usability across devices.
 
-## 🏗 Installation & Setup
+## ⚙ Installation & Setup
 
 To run the project locally, follow these steps:
 
@@ -196,7 +281,7 @@ To run the project locally, follow these steps:
 
 4. **Open in browser**
 
-Visit http://localhost:3000/phonebook to view the project.
+   Visit http://localhost:3000/phonebook to view the project.
 
 ## 👨‍💻 Author
 
